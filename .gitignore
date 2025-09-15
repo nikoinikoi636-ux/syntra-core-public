@@ -1,6 +1,13 @@
+# runtime noise
+logs/
+state/
 __pycache__/
 *.pyc
+*.pyo
 *.log
 *.tmp
-.env
-.DS_Store
+*.swp
+# big bundles
+*.zip
+*.tar
+*.tar.gz
