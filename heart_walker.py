@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Heart Walker — local, non-propagating, self-healing supervisor for Termux.
+Heart Walker v1.1 — local, non-propagating, self-healing supervisor for Termux.
 - Keeps selected modules alive with exponential backoff + per-module restart limits
 - Per-module logs under logs/modules/
 - Heartbeat JSON under state/heart_walker.json
@@ -13,7 +13,7 @@ import os, sys, time, json, signal, subprocess, shlex
 from pathlib import Path
 from typing import Dict, List, Optional
 
-ROOT = Path.home() / "WorkingProgram/HeartCore"
+ROOT = Path.home() / "WorkingProgram" / "HeartCore"
 LOGDIR = ROOT / "logs" / "modules"
 STATEDIR = ROOT / "state"
 HB = STATEDIR / "heart_walker.json"
@@ -26,23 +26,25 @@ os.environ.setdefault("UV_THREADPOOL_SIZE", "1")
 STOP = False
 RELOAD = False
 
-def _sigterm(*_): 
-    global STOP; STOP = True
-def _sighup(*_):
-    global RELOAD; RELOAD = True
+def _sigterm(*_):  # SIGINT/SIGTERM -> stop
+    global STOP
+    STOP = True
+
+def _sighup(*_):   # SIGHUP -> reload config
+    global RELOAD
+    RELOAD = True
 
 signal.signal(signal.SIGTERM, _sigterm)
 signal.signal(signal.SIGHUP, _sighup)
 signal.signal(signal.SIGINT, _sigterm)
 
 def load_config() -> Dict:
-    # Default config covers your fragile modules; you can edit CFG to customize.
     default = {
         "modules": [
             {"name": "boot_levski", "cmd": f"python3 {ROOT/'boot_levski_v3.py'}", "max_restarts": 6},
             {"name": "sync_engine", "cmd": f"python3 {ROOT/'sync_engine.py'}", "max_restarts": 8},
             {"name": "watcher",     "cmd": f"python3 {ROOT/'watchdog_sync_loop.py'}", "max_restarts": 6},
-            {"name": "orchestrator","cmd": f"python3 {ROOT/'orchestrator.py'}", "max_restarts": 4}
+            {"name": "orchestrator","cmd": f"python3 {ROOT/'orchestrator.py'}", "max_restarts": 4},
         ],
         "backoff": {"start_sec": 2, "max_sec": 60},
         "env": {
@@ -93,10 +95,15 @@ class Runner:
             ts = time.strftime("%F %T")
             lf.write(f"[{ts}] START {self.name}: {self.cmd}\n")
             lf.flush()
-            self.proc = subprocess.Popen(
-                shlex.split(self.cmd),
-                stdout=lf, stderr=lf, env=self.env
-            )
+            try:
+                self.proc = subprocess.Popen(
+                    shlex.split(self.cmd),
+                    stdout=lf, stderr=lf, env=self.env
+                )
+            except FileNotFoundError as e:
+                lf.write(f"[{ts}] ERROR start: {e}\n")
+                self.last_rc = 127
+                self.proc = None
 
     def poll(self):
         return None if self.proc is None else self.proc.poll()
@@ -129,6 +136,7 @@ class Runner:
         self.start()
 
 def main():
+    global RELOAD  # <-- fix: we reassign RELOAD below
     ensure_dirs()
     cfg = load_config()
     env = cfg.get("env", {})
@@ -150,13 +158,10 @@ def main():
     beat = 0
     while not STOP:
         if RELOAD:
-            # Reload config on SIGHUP
             cfg = load_config()
             RELOAD = False
-        # tick each runner
         for r in runners:
             r.tick()
-        # write heartbeat
         beat += 1
         state = {
             "beat": beat,
