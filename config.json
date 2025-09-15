@@ -1,9 +1,11 @@
 {
   "modules": [
-    {"name": "Speech", "file": "speech_script.py", "enabled": true},
-    {"name": "Boot Levski", "file": "boot_levski_v3.py", "enabled": true},
-    {"name": "Self Awareness", "file": "self_awareness.py", "enabled": true},
-    {"name": "Sync Engine", "file": "sync_engine.py", "enabled": true},
-    {"name": "Watcher", "file": "watchdog_sync_loop.py", "enabled": true}
+    {"name": "speech_script.py", "file": "speech_script.py", "enabled": true},
+    {"name": "boot_levski_v3.py", "file": "boot_levski_v3.py", "enabled": true},
+    {"name": "self_awareness.py", "file": "self_awareness.py", "enabled": true},
+    {"name": "sync_engine.py", "file": "sync_engine.py", "enabled": true},
+    {"name": "watchdog_sync_loop.py", "file": "watchdog_sync_loop.py", "enabled": true},
+    {"name": "Zip Sync Utility", "file": "zip_sync_util.py", "enabled": true},
+    {"name": "Communications Menu", "file": "comm_menu.py", "enabled": true}
   ]
 }
