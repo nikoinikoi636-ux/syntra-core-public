@@ -42,8 +42,22 @@ def run_module_async(module: str):
     )
     processes.append((module, proc))
 
+def sync_to_git():
+    log("☁️ Syncing to GitHub...")
+    try:
+        subprocess.run(["git", "add", "."], cwd=HC, check=True)
+        subprocess.run(
+            ["git", "commit", "-m", "🔁 Auto-sync after orchestrator run"],
+            cwd=HC,
+            check=False
+        )
+        subprocess.run(["git", "push"], cwd=HC, check=True)
+        log("✅ Git sync completed.")
+    except subprocess.CalledProcessError as e:
+        log(f"❌ Git error: {e}")
+
 def main():
-    log("🧠 HeartCore Orchestrator v3 Starting (parallel)...")
+    log("🧠 HeartCore Orchestrator v3 Starting (parallel + git sync)...")
     for module in MODULES:
         run_module_async(module)
 
@@ -62,6 +76,7 @@ def main():
     except Exception as e:
         log(f"❗ Unexpected error: {e}")
     finally:
+        sync_to_git()
         log("✅ All modules processed.\n")
 
 if __name__ == "__main__":
