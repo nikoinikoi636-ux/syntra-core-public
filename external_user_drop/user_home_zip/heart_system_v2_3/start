@@ -1,0 +1,7 @@
+#!/data/data/com.termux/files/usr/bin/bash
+cd "$(dirname "$0")"
+if command -v python3 >/dev/null 2>&1; then
+  exec python3 entity_core.py
+else
+  exec python entity_core.py
+fi

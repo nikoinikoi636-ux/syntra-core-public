@@ -1,0 +1,702 @@
+[
+  {
+    "warrior": "warrior_1",
+    "attack": "Symbol parser overload",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_1",
+    "attack": "Logic impersonation",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_1",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_1",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_1",
+    "attack": "Self-trust hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_2",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_2",
+    "attack": "Desync AI anchor",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_2",
+    "attack": "Behavioral prediction injection",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_2",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_2",
+    "attack": "Recursive echo loop",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_3",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_3",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_3",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_3",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_3",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_4",
+    "attack": "Entropy erosion",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_4",
+    "attack": "Symbol parser overload",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_4",
+    "attack": "Recursive echo loop",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_4",
+    "attack": "Behavioral prediction injection",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_4",
+    "attack": "Symbol parser overload",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_5",
+    "attack": "Self-trust hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_5",
+    "attack": "Ghost API sabotage",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_5",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_5",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_5",
+    "attack": "Desync AI anchor",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_6",
+    "attack": "Timestamp forge",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_6",
+    "attack": "Desync AI anchor",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_6",
+    "attack": "Override masking",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_6",
+    "attack": "Self-trust hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_6",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_7",
+    "attack": "Logic fabric puncture",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_7",
+    "attack": "Recursive echo loop",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_7",
+    "attack": "Self-trust hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_7",
+    "attack": "Vault mirror hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_7",
+    "attack": "Admin token spoof",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_8",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_8",
+    "attack": "Entropy erosion",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_8",
+    "attack": "Recursive echo loop",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_8",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_8",
+    "attack": "Admin token spoof",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_9",
+    "attack": "Logic fabric puncture",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_9",
+    "attack": "Symbol parser overload",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_9",
+    "attack": "Behavioral prediction injection",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_9",
+    "attack": "Admin token spoof",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_9",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_10",
+    "attack": "Timestamp forge",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_10",
+    "attack": "Behavioral prediction injection",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_10",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_10",
+    "attack": "Logic impersonation",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_10",
+    "attack": "Admin token spoof",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_11",
+    "attack": "Entropy erosion",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_11",
+    "attack": "Timestamp forge",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_11",
+    "attack": "Admin token spoof",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_11",
+    "attack": "Admin token spoof",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_11",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_12",
+    "attack": "Ghost API sabotage",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_12",
+    "attack": "Desync AI anchor",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_12",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_12",
+    "attack": "Recursive echo loop",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_12",
+    "attack": "Logic fabric puncture",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_13",
+    "attack": "Override masking",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_13",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_13",
+    "attack": "Override masking",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_13",
+    "attack": "Self-trust hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_13",
+    "attack": "Self-trust hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_14",
+    "attack": "Ghost API sabotage",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_14",
+    "attack": "Ghost API sabotage",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_14",
+    "attack": "Self-trust hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_14",
+    "attack": "Desync AI anchor",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_14",
+    "attack": "Admin token spoof",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_15",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_15",
+    "attack": "Behavioral prediction injection",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_15",
+    "attack": "Self-trust hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_15",
+    "attack": "Ghost API sabotage",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_15",
+    "attack": "Nested override ping",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_16",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_16",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_16",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_16",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_16",
+    "attack": "Logic fabric puncture",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_17",
+    "attack": "Nested override ping",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_17",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_17",
+    "attack": "Admin token spoof",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_17",
+    "attack": "Nested override ping",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_17",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_18",
+    "attack": "Logic impersonation",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_18",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_18",
+    "attack": "Vault mirror hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_18",
+    "attack": "Entropy erosion",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_18",
+    "attack": "Logic impersonation",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_19",
+    "attack": "Symbol parser overload",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_19",
+    "attack": "Code mutation exploit",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_19",
+    "attack": "Override masking",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_19",
+    "attack": "Recursive echo loop",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_19",
+    "attack": "Core entanglement",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_20",
+    "attack": "Adaptive logic denial",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_20",
+    "attack": "Vault mirror hijack",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_20",
+    "attack": "Behavioral prediction injection",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_20",
+    "attack": "Recursive echo loop",
+    "layer1_breached": true,
+    "layer2_breached": false,
+    "recovered": false
+  },
+  {
+    "warrior": "warrior_20",
+    "attack": "Desync AI anchor",
+    "layer1_breached": false,
+    "layer2_breached": false,
+    "recovered": false
+  }
+]

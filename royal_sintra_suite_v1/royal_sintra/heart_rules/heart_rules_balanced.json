@@ -1,0 +1,20 @@
+{
+  "deny_patterns": [
+    "os.system\\(",
+    "subprocess\\.(Popen|run|call)\\(",
+    "eval\\(",
+    "exec\\(",
+    "pickle\\.(load|loads)\\(",
+    "base64\\s+-d",
+    "bash\\s+-c"
+  ],
+  "allow_patterns": [
+    "# ALLOWED_TEST_SNIPPET"
+  ],
+  "hard_quarantine": [
+    {
+      "pattern": "-----BEGIN [A-Z ]*PRIVATE KEY-----"
+    }
+  ],
+  "notes": "Balanced profile — по-силни защити"
+}

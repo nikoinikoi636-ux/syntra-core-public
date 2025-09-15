@@ -1,0 +1,1 @@
+def run(args, ctx): return 'log_analyzer active'

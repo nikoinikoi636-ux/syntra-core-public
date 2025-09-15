@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <base target="_top">
+    <style>
+      body { font-family: Arial, sans-serif; padding: 10px; }
+      textarea { width: 100%; min-height: 60px; }
+      .row { margin-bottom: 10px; }
+      .small { font-size: 12px; color: #555; }
+      .btn { padding: 8px 12px; }
+      .group { border: 1px solid #ddd; padding: 8px; border-radius: 6px; margin-bottom: 10px; }
+      h2 { margin-top: 0; }
+    </style>
+  </head>
+  <body>
+    <h2>Trinity Core — Lucifer Bridge</h2>
+    <div class="small">Попълни L1–L5. Мост = знание под Истина и Милост.</div>
+
+    <div class="group">
+      <div class="row"><b>L1 Истина над бунта</b></div>
+      <div class="row"><textarea id="l1" placeholder="Какво твърдя днес без проверка? Кой източник ще проверя утре?"></textarea></div>
+
+      <div class="row"><b>L2 Знание под милост</b></div>
+      <div class="row"><textarea id="l2" placeholder="На кого знанието ми донесе помощ (не само правота)?"></textarea></div>
+
+      <div class="row"><b>L3 Смирение като клапан</b></div>
+      <div class="row"><textarea id="l3" placeholder="Къде казах „не знам“? Ако никъде — посочи зона на неопределеност."></textarea></div>
+
+      <div class="row"><b>L4 Доказуемост</b></div>
+      <div class="row"><textarea id="l4" placeholder="Коя част от тезата ми може да е фалшива? Как ще я опровергая/докажа?"></textarea></div>
+
+      <div class="row"><b>L5 Венера‑правило</b></div>
+      <div class="row"><textarea id="l5" placeholder="Къде се държах като източник, а не като мост? Как ще коригирам?"></textarea></div>
+    </div>
+
+    <div class="group">
+      <div class="row">
+        <b>Tilt (‑3 Милост … +3 Бунт):</b>
+        <input type="range" id="tilt" min="-3" max="3" value="0" oninput="tiltVal.textContent=this.value">
+        <span id="tiltVal">0</span>
+      </div>
+      <div class="row"><b>Pride flags (0–7):</b><br>
+        <label><input type="checkbox" class="pf"> Без проверка/източници</label><br>
+        <label><input type="checkbox" class="pf"> Не мога да кажа „не знам“</label><br>
+        <label><input type="checkbox" class="pf"> Знанието ми наранява, не лекува</label><br>
+        <label><input type="checkbox" class="pf"> Отричам граници „от името на свободата“</label><br>
+        <label><input type="checkbox" class="pf"> Говоря повече, отколкото слушам</label><br>
+        <label><input type="checkbox" class="pf"> Присвоявам източника на светлина</label><br>
+        <label><input type="checkbox" class="pf"> Търся врагове, вместо истина</label>
+      </div>
+      <div class="row"><textarea id="notes" placeholder="Бележки / резултати"></textarea></div>
+    </div>
+
+    <button class="btn" onclick="submit()">Запис</button>
+
+    <script>
+      function submit() {
+        const prideCount = Array.from(document.querySelectorAll('.pf')).filter(x => x.checked).length;
+        const data = {
+          l1: document.getElementById('l1').value.trim(),
+          l2: document.getElementById('l2').value.trim(),
+          l3: document.getElementById('l3').value.trim(),
+          l4: document.getElementById('l4').value.trim(),
+          l5: document.getElementById('l5').value.trim(),
+          tilt: document.getElementById('tilt').value,
+          prideCount: prideCount,
+          notes: document.getElementById('notes').value.trim()
+        };
+        google.script.run.withSuccessHandler(() => {
+          alert('Записано. Балансът е отчетен.');
+        }).submitLuciferForm(data);
+      }
+    </script>
+  </body>
+</html>

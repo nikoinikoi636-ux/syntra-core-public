@@ -1,0 +1,7 @@
+{
+  "net_allowed": false,
+  "search_max_kb": 768,
+  "log_level": "INFO",
+  "god_level": 2,
+  "auto_save_memory": true
+}

@@ -1,0 +1,37 @@
+{
+  "deny_patterns": [
+    "os.system\\(",
+    "subprocess.Popen\\(",
+    "eval\\(",
+    "exec\\(",
+    "pickle.load",
+    "base64.b64decode\\(",
+    "marshal.loads"
+  ],
+  "allow_patterns": [
+    "# ALLOWED_TEST_SNIPPET",
+    "DEBUG_ALLOW",
+    "# SAFE_ECHO"
+  ],
+  "risk_multipliers": [
+    {
+      "pattern": "import socket",
+      "score": 2,
+      "note": "Network access risk"
+    },
+    {
+      "pattern": "open\\(.*w",
+      "score": 1.5,
+      "note": "File write risk"
+    }
+  ],
+  "hard_quarantine": [
+    {
+      "pattern": "-----BEGIN RSA PRIVATE KEY-----"
+    },
+    {
+      "pattern": "-----BEGIN DSA PRIVATE KEY-----"
+    }
+  ],
+  "notes": "Heart Node Balanced Mode — умерена агресия. При съмнение → аларма и карантина."
+}

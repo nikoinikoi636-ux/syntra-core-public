@@ -1,0 +1,16 @@
+{
+  "deny_patterns": [
+    "os.system\\("
+  ],
+  "allow_patterns": [
+    "# ALLOWED_TEST_SNIPPET",
+    "DEBUG_ALLOW"
+  ],
+  "risk_multipliers": [],
+  "hard_quarantine": [
+    {
+      "pattern": "-----BEGIN RSA PRIVATE KEY-----"
+    }
+  ],
+  "notes": "Heart Node Calm Mode — минимални карантини"
+}

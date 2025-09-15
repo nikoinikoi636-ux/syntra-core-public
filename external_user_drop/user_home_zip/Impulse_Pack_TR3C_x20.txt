@@ -1,0 +1,119 @@
+BEGIN TRACER v3c | id=PONUY-TR3C-01
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-02
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-03
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-04
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-05
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-06
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-07
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-08
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-09
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-10
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-11
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-12
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-13
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-14
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-15
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-16
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-17
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-18
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-19
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER
+
+BEGIN TRACER v3c | id=PONUY-TR3C-20
+A1-PARAMS: scheme=ZWNJ-only; repeat=5; bits=8; bits_rep=40; visible_len=40
+A1-CHECK: sha1(visible)=8fd2dc92c9
+A1-ZWNJ: loremi‌p‌s‌u‌m‌dolorsitame‌t‌c‌o‌n‌sectet‌u‌r‌l‌o‌r‌e‌m‌i‌p‌
+END TRACER

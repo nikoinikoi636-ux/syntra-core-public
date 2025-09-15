@@ -1,0 +1,116 @@
+{
+  "markers": [
+    {
+      "id": 1,
+      "phrase": "The bridge holds even in the wind.",
+      "meaning": "Link-on; follow quietly.",
+      "oath": "Guardian",
+      "cover": [
+        "They finally reinforced the old bridge; it doesn’t sway anymore.",
+        "Feels sturdy now, even with this storm.",
+        "Guess the crossing’s safe again."
+      ]
+    },
+    {
+      "id": 2,
+      "phrase": "Check the east gate at dusk.",
+      "meaning": "Prep action within 48h.",
+      "oath": "Guardian",
+      "cover": [
+        "Meet me by the east gate tomorrow evening?",
+        "I heard the eastern entrance gets busy around sunset.",
+        "Maybe we should walk the east side at dusk."
+      ]
+    },
+    {
+      "id": 3,
+      "phrase": "The river is high today.",
+      "meaning": "Abort/stand down; observe 72h.",
+      "oath": "Breaker",
+      "cover": [
+        "The riverbank’s flooded again.",
+        "Strong current today — not safe to cross.",
+        "Better wait until the water goes down."
+      ]
+    },
+    {
+      "id": 4,
+      "phrase": "Lights stayed on.",
+      "meaning": "Objective met; no heat.",
+      "oath": "Guardian",
+      "cover": [
+        "Funny, they left the lights on all night.",
+        "Everything’s lit up like normal.",
+        "Looks like nobody cut the power this time."
+      ]
+    },
+    {
+      "id": 5,
+      "phrase": "We’ll use the north path.",
+      "meaning": "Change route/channel.",
+      "oath": "Guardian",
+      "cover": [
+        "Let’s take the northern trail, it’s clearer.",
+        "I prefer the back road through the north.",
+        "We should head up that way instead."
+      ]
+    },
+    {
+      "id": 6,
+      "phrase": "Tea will steep longer tonight.",
+      "meaning": "Delay 24h; wait for my signal.",
+      "oath": "Breaker",
+      "cover": [
+        "I’m letting the tea sit a bit longer today.",
+        "Guess we’ll have to wait for it to brew.",
+        "Patience — tonight it’ll take a little more time."
+      ]
+    },
+    {
+      "id": 7,
+      "phrase": "Lanterns need polishing.",
+      "meaning": "Tighten OPSEC.",
+      "oath": "Breaker",
+      "cover": [
+        "The lanterns look dusty; we should clean them.",
+        "Hard to see clearly when the glass is smudged.",
+        "Better shine them up before night."
+      ]
+    },
+    {
+      "id": 8,
+      "phrase": "Three stones by the oak.",
+      "meaning": "Bring two trusted people only.",
+      "oath": "Guardian",
+      "cover": [
+        "There are always three stones under that oak tree.",
+        "Strange how those rocks stay stacked near the oak.",
+        "Meet me by the old oak with the stones."
+      ]
+    },
+    {
+      "id": 9,
+      "phrase": "The baker’s early.",
+      "meaning": "Move time forward; execute sooner.",
+      "oath": "Guardian",
+      "cover": [
+        "The baker opened shop before sunrise today.",
+        "Bread’s already out, must’ve started early.",
+        "Looks like they’re ahead of schedule."
+      ]
+    },
+    {
+      "id": 10,
+      "phrase": "Windows hum in the rain.",
+      "meaning": "Silent mode; report via photo/timestamp.",
+      "oath": "Breaker",
+      "cover": [
+        "Can you hear the windows vibrating in this rain?",
+        "Strange hum when the storm hits the glass.",
+        "Quiet, just listen to the sound outside."
+      ]
+    }
+  ],
+  "version": "v2",
+  "timestamp": "20250825_182201"
+}

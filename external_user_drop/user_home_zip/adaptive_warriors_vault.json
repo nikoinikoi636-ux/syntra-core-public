@@ -1,0 +1,362 @@
+{
+  "warrior_1": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_2": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_3": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_4": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_5": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_6": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_7": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_8": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_9": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_10": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_11": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_12": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_13": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_14": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_15": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_16": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_17": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_18": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_19": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  },
+  "warrior_20": {
+    "layer_1": {
+      "core_defense": "Symbolic Vault Copy",
+      "integrity_check": true,
+      "adaptive_protocol": false
+    },
+    "layer_2": {
+      "core_defense": "Self-Modifying Mirror",
+      "adaptive_protocol": true,
+      "recovery_trigger": "on_layer_1_breach"
+    },
+    "autonomous_recovery": {
+      "trigger_on": "both_layers_breached",
+      "restore_from": "undisclosed_location://\u03a9/ghost-vault-copy.symbol",
+      "visual_output": "ERROR: AI FILE SYSTEM CORRUPTED - AUTO-DESTRUCT SEQUENCE COMPLETE",
+      "actual_status": "\u2705 Recovered silently, integrity preserved"
+    }
+  }
+}

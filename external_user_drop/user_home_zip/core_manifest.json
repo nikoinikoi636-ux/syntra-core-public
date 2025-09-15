@@ -1,0 +1,20 @@
+{
+  "time_utc": "2025-08-28T18:42:53.533223Z",
+  "files": [
+    {
+      "name": "bionet_v3",
+      "path": "/mnt/data/core/sofia_sentinel_bionet_v3.py",
+      "missing": true
+    },
+    {
+      "name": "bionet_v3_plus",
+      "path": "/mnt/data/core/sofia_sentinel_bionet_v3_plus.py",
+      "missing": true
+    },
+    {
+      "name": "cycle_runner",
+      "path": "/mnt/data/bionet_cycle.sh",
+      "missing": true
+    }
+  ]
+}

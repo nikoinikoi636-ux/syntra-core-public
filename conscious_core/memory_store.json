@@ -1,0 +1,21 @@
+{
+  "journal": [
+    {
+      "time": "2025-09-04T11:11:50",
+      "seen": [
+        "demo_note.txt"
+      ],
+      "insight": "Small steps, transparent choices, consent always."
+    },
+    {
+      "time": "2025-09-04 11:11:50",
+      "self_assessment": true,
+      "note": "Questions generated."
+    }
+  ],
+  "facts": [],
+  "skills": [],
+  "goals": [],
+  "last_cycle": "2025-09-04T11:11:50",
+  "version": "1.0"
+}

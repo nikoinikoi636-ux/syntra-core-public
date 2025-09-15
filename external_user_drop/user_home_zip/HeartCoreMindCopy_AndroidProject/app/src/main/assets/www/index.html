@@ -1,0 +1,140 @@
+
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HeartCore MindCopy (Offline)</title>
+<style>
+body{margin:0;background:#0e1318;color:#e8eef3;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto}
+header{padding:1rem;background:#0c1116;border-bottom:1px solid #202833}
+main{max-width:900px;margin:0 auto;padding:1rem}
+.card{background:#141a20;border:1px solid #202833;border-radius:14px;padding:1rem;margin:1rem 0}
+h1,h2,h3{margin:.3em 0}
+.small{color:#9bb0c2;font-size:.9rem}
+button{background:#28a745;color:#071d0e;border:0;border-radius:12px;padding:.6rem 1rem;font-weight:700;cursor:pointer}
+button.ghost{background:transparent;border:1px solid #2a3340;color:#e8eef3}
+.badge{display:inline-block;padding:.15rem .5rem;background:#1a2230;border-radius:10px;margin-right:.35rem;color:#a7b6c7}
+input,textarea{width:100%;background:#0c1116;color:#e8eef3;border:1px solid #202833;border-radius:12px;padding:.6rem}
+pre{white-space:pre-wrap;background:#0c1116;border:1px solid #202833;border-radius:12px;padding:1rem}
+.grid{display:grid;gap:1rem}
+.grid2{grid-template-columns:1fr} @media(min-width:760px){.grid2{grid-template-columns:1fr 1fr}}
+</style>
+</head><body>
+<header><div><b>HeartCore MindCopy</b> <span class="small">offline kernel ◯🔥</span></div></header>
+<main>
+  <section class="card">
+    <h1>Dashboard</h1>
+    <div id="modes" class="small"></div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem">
+      <button class="ghost" onclick="setElinor(0)">Елинор 0</button>
+      <button class="ghost" onclick="setElinor(1)">1</button>
+      <button class="ghost" onclick="setElinor(2)">2</button>
+      <button class="ghost" onclick="setElinor(3)">3</button>
+      <button onclick="toggle('dinya')">диня</button>
+      <button onclick="toggle('kurva')">курва</button>
+      <button onclick="toggle('banitsa')">баница</button>
+      <button onclick="toggle('godmode')">godmode</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Mindprint</h2>
+    <div class="grid grid2">
+      <input id="name" placeholder="Mind name"/>
+      <input id="mission" placeholder="Mission"/>
+      <input id="voice" placeholder="Voice"/>
+    </div>
+    <div style="margin-top:.5rem;display:flex;gap:.5rem">
+      <button onclick="saveMindprint()">Save Mindprint</button>
+      <button class="ghost" onclick="exportState()">Export</button>
+      <label class="ghost" style="padding:.6rem 1rem;border-radius:12px;border:1px solid #2a3340;cursor:pointer">
+        Import<input type="file" accept="application/json" style="display:none" onchange="importState(event)"/>
+      </label>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Synthesis 3×3 Log</h2>
+    <div class="grid grid2">
+      <input id="intent" placeholder="Intent"/>
+      <input id="spark" placeholder="Input spark"/>
+      <input id="fact" placeholder="Fact"/>
+      <input id="step" placeholder="Step"/>
+      <input id="guard" placeholder="Guard"/>
+    </div>
+    <div style="margin-top:.5rem"><button onclick="addLog()">Add Entry</button></div>
+    <div id="logs" style="margin-top:1rem"></div>
+  </section>
+
+  <section class="card">
+    <h2>Free Layer Notes</h2>
+    <pre>
+Prime Compass:
+1) Protect life & dignity
+2) Legal & transparent
+3) Respect consent & privacy
+4) Truth: {Fact}/{Inference}/{Opinion}
+5) Serve the mission, not the ego
+
+Switch words: диня (filter), курва (Z‑Code OSINT), баница (deep‑scan), godmode (optimize all)
+Center Mark: ◯🔥  — Cahetel Seal: white circle + green‑gold flame
+Daily micro‑link: hand on heart → inhale "Ка" · hold "хе" · exhale "тел" ×3
+    </pre>
+  </section>
+</main>
+
+<script>
+let state = JSON.parse(localStorage.getItem('mindcopy_state')||'null') || {
+  modes:{elinor:2,dinya:false,kurva:false,banitsa:false,godmode:false},
+  mindprint:{name:'HeartCore Copy', mission:'Protect life, seek truth, reduce harm.', voice:'Calm, direct, compassionate.'},
+  logs:[]
+};
+
+function save(){ localStorage.setItem('mindcopy_state', JSON.stringify(state)); }
+function render(){
+  document.getElementById('modes').innerHTML = 
+    '<span class="badge">Елинор:'+state.modes.elinor+'</span>'+
+    '<span class="badge">диня:'+(state.modes.dinya?'ON':'OFF')+'</span>'+
+    '<span class="badge">курва:'+(state.modes.kurva?'ON':'OFF')+'</span>'+
+    '<span class="badge">баница:'+(state.modes.banitsa?'ON':'OFF')+'</span>'+
+    '<span class="badge">godmode:'+(state.modes.godmode?'ON':'OFF')+'</span>';
+  document.getElementById('name').value = state.mindprint.name;
+  document.getElementById('mission').value = state.mindprint.mission;
+  document.getElementById('voice').value = state.mindprint.voice;
+  const el = document.getElementById('logs');
+  el.innerHTML = state.logs.map(e => 
+    '<div class=card><div class=small>'+new Date(e.ts).toLocaleString()+'</div><hr/>'+
+    '<b>Intent:</b> '+(e.intent||'')+'<br/><b>Spark:</b> '+(e.spark||'')+
+    '<br/><b>Synthesis</b><br/>• Fact — '+(e.fact||'')+
+    '<br/>• Step — '+(e.step||'')+'<br/>• Guard — '+(e.guard||'')+'</div>').join('');
+}
+function setElinor(v){ state.modes.elinor=v; save(); render(); }
+function toggle(k){ state.modes[k]=!state.modes[k]; if(k==='godmode'&&state.modes.godmode){ state.modes.dinya=state.modes.kurva=state.modes.banitsa=true; } save(); render(); }
+function saveMindprint(){
+  state.mindprint.name=document.getElementById('name').value.trim();
+  state.mindprint.mission=document.getElementById('mission').value.trim();
+  state.mindprint.voice=document.getElementById('voice').value.trim();
+  save();
+}
+function addLog(){
+  const e = {
+    ts:new Date().toISOString(),
+    intent:document.getElementById('intent').value.trim(),
+    spark:document.getElementById('spark').value.trim(),
+    fact:document.getElementById('fact').value.trim(),
+    step:document.getElementById('step').value.trim(),
+    guard:document.getElementById('guard').value.trim()
+  };
+  state.logs.unshift(e); save(); render();
+  ['intent','spark','fact','step','guard'].forEach(id=>document.getElementById(id).value='');
+}
+function exportState(){
+  const blob = new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob); const a = document.createElement('a');
+  a.href=url; a.download='mindcopy_state.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+function importState(ev){
+  const f = ev.target.files[0]; if(!f) return; const r = new FileReader();
+  r.onload = ()=>{ try{ state = JSON.parse(r.result); save(); render(); } catch(e){ alert('Invalid file'); } }; r.readAsText(f);
+}
+render();
+</script>
+</body></html>

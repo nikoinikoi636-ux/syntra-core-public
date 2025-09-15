@@ -1,0 +1,32 @@
+# Heuristic indicators for suspicious/critical patterns (defensive)
+rules:
+  - id: unauthorized_access
+    pattern: '(unauthorized|permission denied|access denied|invalid credentials)'
+    severity: HIGH
+  - id: auth_fail
+    pattern: '(failed password|authentication failure|pam_unix|login failed)'
+    severity: HIGH
+  - id: privilege_escalation
+    pattern: '(sudo:|su:|sudoers|chmod\s+777|chown\s+root|setuid)'
+    severity: HIGH
+  - id: code_injection
+    pattern: '(\beval\(|exec\(|base64\s+-d|bash\s+-c|curl\s+http|wget\s+http)'
+    severity: HIGH
+  - id: miner_signatures
+    pattern: '(xmrig|coinhive|minerd|stratum\+tcp)'
+    severity: HIGH
+  - id: exfil_suspect
+    pattern: '(scp\s+.*@|rsync\s+.*@|ngrok|tunnel|reverse shell)'
+    severity: MEDIUM
+  - id: kernel_or_segfault
+    pattern: '(segmentation fault|kernel panic|oom-killer)'
+    severity: HIGH
+  - id: integrity_break
+    pattern: '(checksum mismatch|sha256 mismatch|tamper detected|integrity fail)'
+    severity: HIGH
+  - id: suspicious_downloads
+    pattern: '(downloaded\s+from\s+unknown|self-signed|unverified source)'
+    severity: MEDIUM
+  - id: conditioning_trace
+    pattern: '(do\s+not\s+log|suppress logs|silent mode|obfuscate|masking enabled)'
+    severity: MEDIUM

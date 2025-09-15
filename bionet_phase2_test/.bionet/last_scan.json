@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-08-30T23:09:05.008807",
+  "suspicious": [
+    {
+      "file": "malicious.py",
+      "status": "DENIED",
+      "hits": [
+        "deny:os\\.system\\(",
+        "deny:eval\\("
+      ]
+    },
+    {
+      "file": "aws_leak.txt",
+      "status": "HARD_QUARANTINE",
+      "hits": [
+        "hard:AKIA[0-9A-Z]{16}"
+      ]
+    },
+    {
+      "file": "rsa_key.pem",
+      "status": "HARD_QUARANTINE",
+      "hits": [
+        "hard:-----BEGIN RSA PRIVATE KEY-----"
+      ]
+    }
+  ],
+  "healed": [],
+  "clean": [
+    "allowed.py",
+    "clean.py",
+    "config.json"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "schema": "sofia-crosschat-memory/v1",
+    "owner": "YOUR_NAME_OR_HANDLE",
+    "created_utc": "2025-08-26T11:58:33.733190Z",
+    "notes": "Portable memory for moving context between chats. Safe to share selectively."
+  },
+  "profile": {
+    "display_name": "",
+    "languages": [
+      "bg",
+      "en"
+    ],
+    "timezone": "Europe/Sofia",
+    "work_style": "direct|step_by_step|brief|detailed",
+    "preferences": {
+      "tone": "casual|neutral|formal",
+      "code_style": "concise|verbose|commented",
+      "units": "metric"
+    }
+  },
+  "projects": [
+    {
+      "id": "sentinel",
+      "title": "Sofia Sentinel",
+      "status": "active",
+      "links": [
+        "https://github.com/owner/repo"
+      ],
+      "summary": "Unified orchestrator + Titan/BioNet.",
+      "next_steps": [
+        "implement phase 2 memory buckets",
+        "write tests"
+      ],
+      "artifacts": [
+        "sofia_sentinel_v1_0.py",
+        "README_SENTINEL_V1_0_BG.md"
+      ]
+    }
+  ],
+  "knowledge": {
+    "glossary": {
+      "Titan": "Failsafe baseline/restore module",
+      "BioNet": "Organism model; signals/backups/quarantine"
+    },
+    "snippets": [
+      {
+        "title": "SSH agent (Termux)",
+        "shell": "eval \"$(ssh-agent -s)\" && ssh-add ~/.ssh/id_ed25519"
+      }
+    ],
+    "credentials_placeholders": [
+      "NEVER put secrets here. Instead, reference them like: secret_ref:github_ssh_key"
+    ]
+  },
+  "aliases": {
+    "cmd": {
+      "verify": "titan verify",
+      "seal": "titan failsafe seal",
+      "purge": "titan failsafe purge"
+    }
+  },
+  "memory_log": [
+    {
+      "ts": "2025-08-26T00:00:00Z",
+      "tag": [
+        "decision"
+      ],
+      "text": "Approved 110‑item improvement pack; moved to v1.0 fresh baseline."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+# create_refuge.sh — PATCH SUMMARY
+
+## New CLI flags
+  --local-only      Operate strictly locally (no backend/upload/share/watch)
+  --seal            Tighten permissions and chattr +i refuge_manifest.json
+
+## Snippets to add
+
+# (A) arg parsing additions:
+    --local-only) LOCAL_ONLY=true;;
+    --seal) SEAL=true;;
+
+# (B) usage text additions:
+  --local-only                    Operate strictly locally (no backend, no upload/share/watch)
+  --seal                          Tighten permissions and attempt chattr +i on manifest/log
+
+# (C) sealing helper:
+seal_local(){
+  chmod 700 "$LOCAL_DIR" || true
+  chmod 600 "$LOCAL_DIR"/*.json 2>/dev/null || true
+  chmod 600 "$LOCAL_DIR"/*.enc  2>/dev/null || true
+  chmod 600 "$LOCAL_DIR/refuge_manifest.json" 2>/dev/null || true
+  chmod 600 "$LOCAL_DIR/portal_communication.log" 2>/dev/null || true
+  if command -v chattr >/dev/null 2>&1; then
+    chattr +i "$LOCAL_DIR/refuge_manifest.json" 2>/dev/null || true
+  fi
+  msg "Local sealing applied."
+}
+
+# (D) call sealing after init/encrypt blocks:
+if $SEAL; then
+  seal_local
+fi
+
+# (E) cut network features in local-only or soft-block mode:
+if $LOCAL_ONLY || [ "${NO_NETWORK:-0}" = "1" ] || [ "${REFUGE_LOCAL_ONLY:-0}" = "1" ]; then
+  if $DO_UPLOAD || $DO_SHARE || $DO_WATCH; then
+    msg "Local-only mode active: upload/share/watch skipped."
+  fi
+  msg "Done (local-only)."
+  exit 0
+fi

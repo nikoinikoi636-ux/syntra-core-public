@@ -1,0 +1,65 @@
+{
+  "timestamp": "2025-08-30T23:08:27.862699",
+  "phases": {
+    "phase1": {
+      "tests": [
+        {
+          "file": "malicious.py",
+          "status": "DENIED",
+          "hits": [
+            "deny:os\\.system\\(",
+            "deny:eval\\("
+          ],
+          "scan_time_ms": 0.36,
+          "passed": true
+        },
+        {
+          "file": "allowed.py",
+          "status": "ALLOWED",
+          "hits": [
+            "allow:# ALLOWED_TEST_SNIPPET",
+            "deny:os\\.system\\("
+          ],
+          "scan_time_ms": 0.01,
+          "passed": true
+        },
+        {
+          "file": "aws_leak.txt",
+          "status": "HARD_QUARANTINE",
+          "hits": [
+            "hard:AKIA[0-9A-Z]{16}"
+          ],
+          "scan_time_ms": 0.01,
+          "passed": true
+        },
+        {
+          "file": "rsa_key.pem",
+          "status": "HARD_QUARANTINE",
+          "hits": [
+            "hard:-----BEGIN RSA PRIVATE KEY-----"
+          ],
+          "scan_time_ms": 0.01,
+          "passed": true
+        },
+        {
+          "file": "clean.py",
+          "status": "CLEAN",
+          "hits": [],
+          "scan_time_ms": 0.01,
+          "passed": true
+        },
+        {
+          "file": "config.json",
+          "status": "CLEAN",
+          "hits": [],
+          "scan_time_ms": 0.01,
+          "passed": true
+        }
+      ],
+      "summary": {
+        "pass_rate": "6/6 (100%)",
+        "avg_scan_time_ms": 0.07
+      }
+    }
+  }
+}

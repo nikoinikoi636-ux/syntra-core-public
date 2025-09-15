@@ -1,0 +1,15 @@
+{
+  "ts": "20250829-021412",
+  "changed": [],
+  "suspicious": [
+    "ok.py",
+    "bad_os.py",
+    "keys.txt",
+    "heart_rules.json"
+  ],
+  "healed": [
+    "bad_os.py",
+    "keys.txt"
+  ],
+  "count": 4
+}

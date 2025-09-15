@@ -1,0 +1,245 @@
+
+
+===== index.html =====
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="manifest" href="manifest.json"/><link rel="icon" href="icons/icon-192.png"/>
+<meta name="theme-color" content="#28a745"/><title>HeartCore MindCopy</title>
+<link rel="stylesheet" href="styles.css"/>
+</head><body>
+<header><nav><div class="brand"><span class="dot"></span> HeartCore MindCopy</div>
+<div class="small">Install from browser menu → <span class="kbd">Add to Home Screen</span></div></nav></header>
+<main>
+  <section class="card">
+    <h1>Dashboard</h1>
+    <div class="small">Generated: 2025-08-19 05:23 UTC</div>
+    <div id="modes" style="margin:.5rem 0"></div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Modes</h3>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="ghost" onclick="toggle('elinor',0)">Елинор 0</button>
+          <button class="ghost" onclick="toggle('elinor',1)">1</button>
+          <button class="ghost" onclick="toggle('elinor',2)">2</button>
+          <button class="ghost" onclick="toggle('elinor',3)">3</button>
+          <button onclick="toggle('dinya')">диня</button>
+          <button onclick="toggle('kurva')">курва</button>
+          <button onclick="toggle('banitsa')">баница</button>
+          <button onclick="toggle('godmode')">godmode</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Quick Links</h3>
+        <button class="ghost" onclick="setTab('tab_hc')">Heart Core</button>
+        <button class="ghost" onclick="setTab('tab_fl')">Free Layer</button>
+        <button class="ghost" onclick="setTab('tab_ritual')">Ritual</button>
+        <button class="ghost" onclick="setTab('tab_logs')">Logs</button>
+        <button class="ghost" onclick="setTab('tab_settings')">Backup</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab_hc" data-tab class="card" style="display:none">
+    <h2>HEART CORE v3.1</h2>
+    <pre id="doc_hc">Loading…</pre>
+  </section>
+
+  <section id="tab_fl" data-tab class="card" style="display:none">
+    <h2>Free Layer v1</h2>
+    <pre id="doc_fl">Loading…</pre>
+  </section>
+
+  <section id="tab_ritual" data-tab class="card" style="display:none">
+    <h2>Seven‑Day Cahetel Ritual</h2>
+    <pre id="doc_ritual">Loading…</pre>
+  </section>
+
+  <section id="tab_logs" data-tab class="card" style="display:none">
+    <h2>Daily Log — Synthesis 3×3</h2>
+    <form id="logForm" onsubmit="event.preventDefault();addLog();">
+      <div class="grid">
+        <input id="lg_intent" placeholder="Intent / Question"/>
+        <input id="lg_spark" placeholder="Spark / Reflection"/>
+        <input id="lg_fact" placeholder="Fact"/>
+        <input id="lg_step" placeholder="Step"/>
+        <input id="lg_guard" placeholder="Guard"/>
+      </div>
+      <div style="margin-top:.6rem;display:flex;gap:.5rem">
+        <button type="submit">Add Entry</button>
+      </div>
+    </form>
+    <div id="logs" style="margin-top:1rem"></div>
+  </section>
+
+  <section id="tab_settings" data-tab class="card" style="display:none">
+    <h2>Mindprint & Backup</h2>
+    <div class="grid">
+      <input id="mp_name" placeholder="Mind name"/>
+      <input id="mp_mission" placeholder="Mission"/>
+      <input id="mp_voice" placeholder="Voice"/>
+    </div>
+    <div style="margin-top:.6rem;display:flex;gap:.5rem">
+      <button onclick="saveMindprint()">Save Mindprint</button>
+      <button class="ghost" onclick="exportState()">Export State</button>
+      <label class="ghost" style="padding:.6rem 1rem;border-radius:12px;border:1px solid #202833;cursor:pointer">
+        Import State <input type="file" accept="application/json" onchange="importState(event)" style="display:none"/>
+      </label>
+    </div>
+  </section>
+
+  <footer>HeartCore MindCopy — ◯🔥 — 2025-08-19</footer>
+</main>
+<script src="script.js"></script>
+</body></html>
+
+
+===== styles.css =====
+
+:root{--bg:#0e1318;--fg:#e8eef3;--muted:#9bb0c2;--brand:#28a745;--card:#141a20;--line:#202833;--accent:#f6c94a}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto}
+header{position:sticky;top:0;background:rgba(14,19,24,.9);backdrop-filter:blur(6px);z-index:10;border-bottom:1px solid var(--line)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem}
+.brand{display:flex;gap:.5rem;align-items:center;font-weight:800}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
+main{max-width:920px;margin:0 auto;padding:1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem;margin:1rem 0;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+h1,h2,h3{margin:.3em 0}
+small,.small{color:var(--muted);font-size:.9rem}
+button{background:var(--brand);color:#06220e;border:0;border-radius:12px;padding:.6rem 1rem;font-weight:700;cursor:pointer}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--fg)}
+.badge{display:inline-block;padding:.15rem .45rem;border-radius:10px;background:#1b2330;color:#a9b9ca;margin-right:.35rem}
+.grid{display:grid;gap:1rem}
+.grid.cols-2{grid-template-columns:1fr} @media(min-width:760px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+pre{white-space:pre-wrap;background:#0c1116;border:1px solid var(--line);border-radius:12px;padding:1rem}
+textarea,input{width:100%;background:#0c1116;border:1px solid var(--line);border-radius:12px;color:var(--fg);padding:.75rem}
+hr{border:0;border-top:1px solid var(--line);margin:1rem 0}
+footer{padding:2rem 1rem;text-align:center;color:var(--muted)}
+.kbd{background:#10161e;border:1px solid var(--line);padding:.1rem .35rem;border-radius:6px}
+
+
+===== script.js =====
+
+let state = JSON.parse(localStorage.getItem('mind_state')||'{}');
+state.modes = state.modes||{ elinor:2, dinya:false, kurva:false, banitsa:false, godmode:false };
+state.mindprint = state.mindprint||{
+  name:'HeartCore Copy', mission:'Protect life, seek truth, reduce harm.', voice:'Calm, direct, compassionate.',
+  symbols:{ center:'◯🔥', cahetel:'white circle + green-gold flame' },
+  directives:[
+    'Protect life & dignity.',
+    'Stay lawful & transparent.',
+    'Respect consent & privacy.',
+    'Seek truth: {Fact}/{Inference}/{Opinion}.',
+    'Serve the mission, not the ego.'
+  ]
+};
+state.logs = state.logs||[];
+
+function save(){ localStorage.setItem('mind_state', JSON.stringify(state)); }
+function setTab(id){
+  document.querySelectorAll('[data-tab]').forEach(e=>e.style.display='none');
+  document.getElementById(id).style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+async function showDoc(el, path){ el.textContent='Loading…'; el.textContent = await (await fetch(path)).text(); }
+function renderModes(){
+  const s=state.modes;
+  document.getElementById('modes').innerHTML = `
+    <span class="badge">Елинор:${s.elinor}</span>
+    <span class="badge">диня:${s.dinya?'ON':'OFF'}</span>
+    <span class="badge">курва:${s.kurva?'ON':'OFF'}</span>
+    <span class="badge">баница:${s.banitsa?'ON':'OFF'}</span>
+    <span class="badge">godmode:${s.godmode?'ON':'OFF'}</span>`;
+}
+function toggle(name,val){
+  if(name==='elinor'){ state.modes.elinor = val; }
+  else{ state.modes[name]=!state.modes[name]; if(name==='godmode'&&state.modes.godmode){ state.modes.dinya=state.modes.kurva=state.modes.banitsa=true; } }
+  renderModes(); save();
+}
+function renderMindprint(){
+  document.getElementById('mp_name').value = state.mindprint.name;
+  document.getElementById('mp_mission').value = state.mindprint.mission;
+  document.getElementById('mp_voice').value = state.mindprint.voice;
+}
+function saveMindprint(){
+  state.mindprint.name = document.getElementById('mp_name').value.trim();
+  state.mindprint.mission = document.getElementById('mp_mission').value.trim();
+  state.mindprint.voice = document.getElementById('mp_voice').value.trim();
+  save();
+}
+function addLog(){
+  const intent = document.getElementById('lg_intent').value.trim();
+  const spark = document.getElementById('lg_spark').value.trim();
+  const fact = document.getElementById('lg_fact').value.trim();
+  const step = document.getElementById('lg_step').value.trim();
+  const guard = document.getElementById('lg_guard').value.trim();
+  state.logs.unshift({ ts:new Date().toISOString(), modes:{...state.modes}, intent,spark,fact,step,guard });
+  save(); renderLogs();
+  document.getElementById('logForm').reset();
+}
+function renderLogs(){
+  const el = document.getElementById('logs');
+  if(state.logs.length===0){ el.innerHTML='<div class="small">No entries yet.</div>'; return; }
+  el.innerHTML = state.logs.map(e=>`
+    <div class="card">
+      <div class="small">${new Date(e.ts).toLocaleString()}</div>
+      <div class="small">Modes → Елинор:${e.modes.elinor} | диня:${e.modes.dinya?'ON':'OFF'} | курва:${e.modes.kurva?'ON':'OFF'} | баница:${e.modes.banitsa?'ON':'OFF'} | godmode:${e.modes.godmode?'ON':'OFF'}</div>
+      <hr/>
+      <b>Intent:</b> ${e.intent||''}<br/>
+      <b>Spark:</b> ${e.spark||''}<br/>
+      <b>Synthesis 3×3</b><br/>• Fact — ${e.fact||''}<br/>• Step — ${e.step||''}<br/>• Guard — ${e.guard||''}
+    </div>
+  `).join('');
+}
+function exportState(){
+  const blob = new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='mindcopy_state.json'; a.click(); URL.revokeObjectURL(url);
+}
+function importState(ev){
+  const f = ev.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = () => { try{ state = JSON.parse(r.result); save(); location.reload(); }catch(e){ alert('Invalid file'); } };
+  r.readAsText(f);
+}
+
+window.addEventListener('load', async ()=>{
+  renderModes(); renderMindprint(); renderLogs();
+  await showDoc(document.getElementById('doc_hc'), './data/HEART_CORE_v3_1.md');
+  await showDoc(document.getElementById('doc_fl'), './data/HEART_CORE_FreeLayer_v1.md');
+  await showDoc(document.getElementById('doc_ritual'), './data/SevenDay_Cahetel_Ritual.md');
+  if('serviceWorker' in navigator){ try{ await navigator.serviceWorker.register('./service-worker.js'); }catch(e){} }
+});
+
+
+===== manifest.json =====
+{
+  "name": "HeartCore MindCopy",
+  "short_name": "MindCopy",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#12161b",
+  "theme_color": "#28a745",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
+===== service-worker.js =====
+
+const CACHE='mindcopy-202508190523';
+const ASSETS=['./','./index.html','./styles.css','./script.js','./manifest.json',
+'./icons/icon-192.png','./icons/icon-512.png',
+'./data/HEART_CORE_v3_1.md','./data/HEART_CORE_FreeLayer_v1.md','./data/SevenDay_Cahetel_Ritual.md'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(k=>k!==CACHE?caches.delete(k):null)))));
+self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));

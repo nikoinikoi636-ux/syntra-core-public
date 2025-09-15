@@ -1,16 +1,8 @@
 #!/usr/bin/env python3
-# HeartCore Suite Launcher
-# Modes: schizo, heartcore, godmode, hacker, necromancer
-# Features:
-#  - Auto-extracts ALL .zip files under ./payload into ./apps (safe extraction)
-#  - Discovers runnable files (.sh, .py, .bat, .cmd, .ps1, .exe)
-#  - Launches each in a separate window/tab: tmux (preferred) or new terminal windows on Linux/macOS/Windows
-#  - Pretty TUI if "rich" is available; falls back to plain text otherwise
-#  - Logs to ./logs and sets mode-specific environment variables
-#
-# Legal note: Use this only for lawful purposes and with software you trust.
+# HeartCore Suite v1.2 — SMART BATCH MODE
+# Designed for Termux/mobile: launches apps in safe batches instead of 300+ windows at once.
 
-import os, sys, zipfile, pathlib, platform, stat, subprocess, shlex, time
+import os, sys, zipfile, pathlib, platform, stat, subprocess, shlex, time, re
 from typing import List, Dict
 
 HERE = pathlib.Path(__file__).parent.resolve()
@@ -20,68 +12,42 @@ LOGS = HERE / "logs"
 APPS.mkdir(exist_ok=True)
 LOGS.mkdir(exist_ok=True)
 
-# --- Optional pretty UI ---
-def ensure_rich():
-    try:
-        import rich  # noqa: F401
-        return True
-    except Exception:
-        try:
-            subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", "--user", "rich"], check=False)
-            import rich  # noqa: F401
-            return True
-        except Exception:
-            return False
+def log(msg: str):
+    ts = time.strftime("%Y-%m-%d %H:%M:%S")
+    line = f"[{ts}] {msg}"
+    print(line, flush=True)
+    with open(LOGS / "launcher.log", "a", encoding="utf-8") as f:
+        f.write(line + "\n")
 
-HAS_RICH = ensure_rich()
-if HAS_RICH:
-    from rich.console import Console
-    from rich.table import Table
-    from rich.panel import Panel
-    from rich.prompt import Prompt
-    console = Console()
-else:
-    class Dummy:
-        def print(self, *a, **k): print(*a)
-    console = Dummy()
-
-# --- Safe unzip to avoid Zip Slip ---
-def safe_extract(zip_path: pathlib.Path, dest: pathlib.Path):
-    with zipfile.ZipFile(zip_path, 'r') as z:
-        for member in z.namelist():
-            abs_target = (dest / pathlib.Path(member)).resolve()
-            if not str(abs_target).startswith(str(dest.resolve())):
-                raise RuntimeError(f"Blocked path traversal attempt in {zip_path.name}: {member}")
+# ---- Safe extract
+def safe_extract(zp: pathlib.Path, dest: pathlib.Path):
+    with zipfile.ZipFile(zp, 'r') as z:
+        for m in z.namelist():
+            p = (dest / pathlib.Path(m)).resolve()
+            if not str(p).startswith(str(dest.resolve())):
+                raise RuntimeError(f"Zip path traversal blocked: {m}")
         z.extractall(dest)
 
-def extract_all_zips(root: pathlib.Path, outdir: pathlib.Path):
-    count = 0
+def extract_all(root: pathlib.Path, out: pathlib.Path):
+    c = 0
     for p in root.rglob("*.zip"):
-        rel = p.relative_to(root)
-        target_dir = outdir / rel.with_suffix("")
-        target_dir.mkdir(parents=True, exist_ok=True)
+        t = out / p.relative_to(root).with_suffix("")
+        t.mkdir(parents=True, exist_ok=True)
         try:
-            safe_extract(p, target_dir)
-            count += 1
+            safe_extract(p, t)
+            c += 1
         except Exception as e:
-            console.print(f"[!] Failed to extract {p}: {e}")
-    return count
+            log(f"[!] Extract fail {p}: {e}")
+    return c
 
-# --- Discover runnable files ---
-EXEC_EXTS = {
-    "linux": [".sh", ".py"],
-    "darwin": [".sh", ".py"],
-    "windows": [".bat", ".cmd", ".ps1", ".py", ".exe"],
-}
-
-def is_executable(p: pathlib.Path) -> bool:
-    if p.is_dir():
-        return False
+# ---- Discovery
+def is_exec(p: pathlib.Path) -> bool:
+    if p.is_dir(): return False
     sysname = platform.system().lower()
     if sysname.startswith("win"):
-        return p.suffix.lower() in EXEC_EXTS["windows"]
+        return p.suffix.lower() in [".bat",".cmd",".ps1",".py",".exe"]
     else:
-        if p.suffix.lower() in EXEC_EXTS["linux"] + EXEC_EXTS["darwin"]:
+        if p.suffix.lower() in [".sh",".py"]:
             return True
         try:
             st = p.stat()
@@ -89,211 +55,177 @@ def is_executable(p: pathlib.Path) -> bool:
         except Exception:
             return False
 
-def guess_run_cmd(p: pathlib.Path):
+def run_cmd(p: pathlib.Path):
     sysname = platform.system().lower()
-    ext = p.suffix.lower()
+    e = p.suffix.lower()
     if sysname.startswith("win"):
-        if ext in [".bat", ".cmd"]:
+        if e in [".bat",".cmd"]:
             return [str(p)]
-        if ext == ".ps1":
-            return ["powershell", "-ExecutionPolicy", "Bypass", "-NoExit", "-File", str(p)]
-        if ext == ".py":
+        if e == ".ps1":
+            return ["powershell","-ExecutionPolicy","Bypass","-NoExit","-File",str(p)]
+        if e == ".py":
             return [sys.executable, str(p)]
-        if ext == ".exe":
+        if e == ".exe":
             return [str(p)]
-        return ["cmd", "/k", str(p)]
+        return ["cmd","/k",str(p)]
     else:
-        if ext == ".sh":
+        if e == ".sh":
             return ["bash", str(p)]
-        if ext == ".py":
+        if e == ".py":
             return [sys.executable, str(p)]
         return [str(p)]
 
-def discover_programs(app_root: pathlib.Path):
-    programs = []
-    for p in app_root.rglob("*"):
-        if is_executable(p):
-            name_score = 0
-            stem = p.stem.lower()
-            if stem.startswith(("start", "run", "launch")):
-                name_score += 10
-            programs.append({
-                "path": p,
-                "cmd": guess_run_cmd(p),
-                "score": name_score,
-            })
-    programs.sort(key=lambda x: (-x["score"], str(x["path"])))
-    return programs
+def discover(root: pathlib.Path):
+    L = []
+    for p in root.rglob("*"):
+        if is_exec(p):
+            score = 10 if p.stem.lower().startswith(("start","run","launch")) else 0
+            L.append({"path": p, "cmd": run_cmd(p), "score": score})
+    L.sort(key=lambda x: (-x["score"], str(x["path"])))
+    return L
 
-# --- Launch in separate windows ---
-def command_exists(cmd):
+# ---- Resource sensing (Linux/Android)
+def mem_available_mb() -> int:
+    try:
+        with open("/proc/meminfo","r") as f:
+            data = f.read()
+        m = re.search(r"MemAvailable:\s+(\d+)\s+kB", data)
+        if m:
+            kb = int(m.group(1)); return max(1, kb // 1024)
+    except Exception:
+        pass
+    return 512  # conservative fallback
+
+def cpu_count() -> int:
+    try:
+        return os.cpu_count() or 2
+    except Exception:
+        return 2
+
+def smart_batch_size() -> int:
+    # Heuristic: allow ~1 window per 120MB available, cap by CPU*3, clamp 1..25
+    avail = mem_available_mb()
+    cpu = cpu_count()
+    by_mem = max(1, avail // 120)
+    by_cpu = max(1, cpu * 3)
+    sz = min(by_mem, by_cpu, 25)
+    return max(1, sz)
+
+# ---- tmux helpers
+def tmux_exists():
     from shutil import which
-    return which(cmd) is not None
+    return which("tmux") is not None
 
-def launch_linux_mac(entries, session_name="heartcore"):
-    sysname = platform.system().lower()
-    launched = []
-    if command_exists("tmux"):
-        subprocess.run(["tmux", "new-session", "-d", "-s", session_name], check=False)
-        for e in entries:
-            title = e["path"].name
-            cmd = " ".join(shlex.quote(x) for x in e["cmd"])
-            subprocess.run(["tmux", "new-window", "-t", session_name, "-n", title,
-                            f"cd {shlex.quote(str(e['path'].parent))} && {cmd}; read -n 1 -s -r -p 'Press any key to close'"], check=False)
-            launched.append(title)
-        subprocess.run(["tmux", "select-window", "-t", f"{session_name}:1"], check=False)
-        console.print(f"[+] tmux session '{session_name}' created with {len(entries)} windows. Attach with: tmux attach -t {session_name}")
-        return launched
+def tmux_session_exists(name: str) -> bool:
+    try:
+        r = subprocess.run(["tmux","has-session","-t",name], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return r.returncode == 0
+    except Exception:
+        return False
 
-    # Try common terminals
-    terminals = []
-    if sysname == "darwin":
-        terminals = ["osascript"]
-    else:
-        for t in ["x-terminal-emulator", "gnome-terminal", "konsole", "xfce4-terminal", "kitty", "alacritty", "xterm", "lxterminal", "tilix", "urxvt"]:
-            if command_exists(t):
-                terminals.append(t)
-                break
+def tmux_ensure(name: str):
+    if not tmux_session_exists(name):
+        subprocess.run(["tmux","new-session","-d","-s",name,"bash"], check=False)
 
-    for e in entries:
-        title = e["path"].name
-        cmd_list = e["cmd"]
-        workdir = str(e["path"].parent)
-        if sysname == "darwin":
-            script = f'''
-                tell application "Terminal"
-                    do script "cd {workdir} && {' '.join(shlex.quote(x) for x in cmd_list)}; printf '\\n[Done] Press Ctrl+D to close...'"
-                    activate
-                end tell
-            '''
-            subprocess.Popen(["osascript", "-e", script])
-            launched.append(title)
-        elif terminals:
-            term = terminals[0]
-            if term in ("gnome-terminal", "xfce4-terminal", "tilix"):
-                subprocess.Popen([term, "--", "bash", "-lc", f"cd {shlex.quote(workdir)} && {' '.join(shlex.quote(x) for x in cmd_list)}; echo; read -n1 -r -p 'Done. Press any key to close.'"])
-            elif term in ("konsole",):
-                subprocess.Popen([term, "-e", "bash", "-lc", f"cd {workdir} && {' '.join(shlex.quote(x) for x in cmd_list)}; echo; read -n1 -r -p 'Done. Press any key to close.'"])
+def spawn_tmux_window(session: str, title: str, workdir: str, cmd: str):
+    subprocess.run(["tmux","new-window","-t",session,"-n",title,
+                    f"cd {shlex.quote(workdir)} && {cmd}; echo; read -n1 -r -p 'Done. Press any key'"], check=False)
+
+def spawn_terminal(workdir: str, cmd_list: list):
+    # Best-effort terminals on Linux/Android
+    from shutil import which
+    for t in ["x-terminal-emulator","gnome-terminal","konsole","xfce4-terminal","kitty","alacritty","xterm","lxterminal","tilix","urxvt"]:
+        if which(t):
+            if t in ("gnome-terminal","xfce4-terminal","tilix"):
+                subprocess.Popen([t,"--","bash","-lc",f"cd {shlex.quote(workdir)} && {' '.join(shlex.quote(x) for x in cmd_list)}; echo; read -n1 -r -p 'Done'"])
             else:
-                subprocess.Popen([term, "-e", "bash", "-lc", f"cd {workdir} && {' '.join(shlex.quote(x) for x in cmd_list)}; echo; read -n1 -r -p 'Done. Press any key to close.'"])
-            launched.append(title)
-        else:
-            subprocess.Popen(cmd_list, cwd=workdir)
-            launched.append(title)
-    return launched
-
-def launch_windows(entries):
-    launched = []
-    for e in entries:
-        workdir = str(e["path"].parent)
-        title = e["path"].name
-        cmd = e["cmd"]
-        joined = " ".join(shlex.quote(x) for x in cmd)
-        os.system(f'start "{title}" cmd /k "cd /d {workdir} && {joined}"')
-        launched.append(title)
-    return launched
+                subprocess.Popen([t,"-e","bash","-lc",f"cd {workdir} && {' '.join(shlex.quote(x) for x in cmd_list)}; echo; read -n1 -r -p 'Done'"])
+            return True
+    # Fallback: background process
+    subprocess.Popen(cmd_list, cwd=workdir)
+    return True
 
 def set_mode_env(mode: str):
-    mode = (mode or "").lower().strip()
-    env = os.environ
-    flags = {
-        "SCHIZO_MODE": "0",
-        "HEART_CORE": "0",
-        "GODMODE": "0",
-        "HACKER_MODE": "0",
-        "NECROMANCER": "0",
-        "HEARTCORE_PROFILE": "default"
-    }
-    if mode in ("schizo", "schizo_mode"):
-        flags["SCHIZO_MODE"] = "1"; flags["HEARTCORE_PROFILE"] = "schizo"
-    elif mode in ("heartcore", "heart_core", "heart"):
-        flags["HEART_CORE"] = "1"; flags["HEARTCORE_PROFILE"] = "heartcore"
-    elif mode in ("godmode", "god"):
-        flags["GODMODE"] = "1"; flags["HEARTCORE_PROFILE"] = "godmode"
-    elif mode in ("hacker", "hacker_mode"):
-        flags["HACKER_MODE"] = "1"; flags["HEARTCORE_PROFILE"] = "hacker"
-    elif mode in ("necromancer", "necro"):
-        flags["NECROMANCER"] = "1"; flags["HEARTCORE_PROFILE"] = "necromancer"
-    env.update(flags)
+    mode = (mode or '').lower().strip()
+    flags = {"SCHIZO_MODE":"0","HEART_CORE":"0","GODMODE":"0","HACKER_MODE":"0","NECROMANCER":"0","HEARTCORE_PROFILE":"default"}
+    if mode in ("schizo","schizo_mode"): flags.update(SCHIZO_MODE="1", HEARTCORE_PROFILE="schizo")
+    elif mode in ("heartcore","heart_core","heart"): flags.update(HEART_CORE="1", HEARTCORE_PROFILE="heartcore")
+    elif mode in ("godmode","god"): flags.update(GODMODE="1", HEARTCORE_PROFILE="godmode")
+    elif mode in ("hacker","hacker_mode"): flags.update(HACKER_MODE="1", HEARTCORE_PROFILE="hacker")
+    elif mode in ("necromancer","necro"): flags.update(NECROMANCER="1", HEARTCORE_PROFILE="necromancer")
+    os.environ.update(flags)
     return flags
-
-def log_discovery(programs):
-    LOGS.mkdir(exist_ok=True)
-    log_file = LOGS / f"discovery_{int(time.time())}.txt"
-    with open(log_file, "w", encoding="utf-8") as f:
-        for i, e in enumerate(programs, 1):
-            f.write(f"{i}. {e['path']} :: {e['cmd']}\n")
-    return log_file
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser(description="HeartCore Suite Launcher")
-    parser.add_argument("--mode", default="godmode", help="Mode: schizo | heartcore | godmode | hacker | necromancer")
-    parser.add_argument("--auto-launch", action="store_true", help="Launch all discovered programs immediately in separate windows")
-    parser.add_argument("--session", default="heartcore", help="tmux session / window group name")
-    args = parser.parse_args()
+    p = argparse.ArgumentParser(description="HeartCore Suite v1.2 — SMART BATCH MODE")
+    p.add_argument("--mode", default="godmode")
+    p.add_argument("--session", default="heartcore")
+    p.add_argument("--batch", type=int, default=None, help="Manual batch size (programs per wave)")
+    p.add_argument("--smart-batch", action="store_true", help="Auto-compute safe batch size based on RAM/CPU")
+    p.add_argument("--stagger", type=float, default=1.0, help="Delay between spawns inside a batch (seconds)")
+    p.add_argument("--wave", type=int, default=1, help="Which wave to launch (1-based). Use to resume next waves.")
+    p.add_argument("--dry-run", action="store_true")
+    args = p.parse_args()
 
-    flags = set_mode_env(args.mode)
-    if HAS_RICH:
-        from rich.panel import Panel
-        console.print(Panel.fit(f"[bold]HeartCore Suite[/bold]\nProfile: {flags.get('HEARTCORE_PROFILE')}"))
-    else:
-        console.print(f"HeartCore Suite — profile: {flags.get('HEARTCORE_PROFILE')}")
+    set_mode_env(args.mode)
+    log("[*] Extracting payload...")
+    ex = extract_all(PAYLOAD, APPS)
+    log(f"[+] Extracted {ex} zip(s)")
 
-    extracted = extract_all_zips(PAYLOAD, APPS)
-    console.print(f"[+] Extracted {extracted} zip archive(s) from payload into ./apps")
+    progs = discover(APPS)
+    if not progs:
+        log("[!] No runnable files in ./apps"); return
 
-    programs = discover_programs(APPS)
-    log_file = log_discovery(programs)
+    total = len(progs)
+    # Compute batch size
+    bsz = args.batch if args.batch else (smart_batch_size() if args.smart_batch else 10)
+    bsz = max(1, bsz)
+    waves = (total + bsz - 1) // bsz
+    wave = max(1, min(args.wave, waves))
+    start = (wave - 1) * bsz
+    end = min(total, start + bsz)
+    slice_entries = progs[start:end]
 
-    if not programs:
-        console.print("[!] No runnable files found under ./apps. Add zips into ./payload and rerun.")
-        sys.exit(0)
+    log(f"[i] Total discovered: {total}. Batch size: {bsz}. Waves: {waves}. Launching wave {wave} [{start+1}..{end}]")
 
-    if HAS_RICH:
-        from rich.table import Table
-        table = Table(title="Discovered Programs")
-        table.add_column("#", justify="right")
-        table.add_column("Path")
-        table.add_column("Command")
-        for i, e in enumerate(programs, 1):
-            table.add_row(str(i), str(e["path"]), " ".join(shlex.quote(x) for x in e["cmd"]))
-        console.print(table)
-    else:
-        for i, e in enumerate(programs, 1):
-            console.print(f"{i}. {e['path']} :: {' '.join(e['cmd'])}")
-    console.print(f"[i]Discovery log saved to {log_file}")
-
-    entries = programs
-    if not args.auto_launch:
-        if HAS_RICH:
-            from rich.prompt import Prompt
-            choice = Prompt.ask("Launch [bold]all[/bold], select [bold]some[/bold], or [bold]quit[/bold]?", choices=["all","some","quit"], default="all")
-        else:
-            choice = input("Launch all (all/some/quit)? [all] ").strip() or "all"
-        if choice == "quit":
-            return
-        if choice == "some":
-            picks = (Prompt.ask("Enter numbers separated by commas", default="1") if HAS_RICH
-                     else input("Enter numbers separated by commas: "))
-            try:
-                idxs = {int(x.strip()) for x in picks.split(",") if x.strip()}
-                entries = [e for i, e in enumerate(programs, 1) if i in idxs]
-            except Exception:
-                console.print("[!] Invalid selection, launching all.")
-                entries = programs
+    if args.dry_run:
+        for i, e in enumerate(slice_entries, start+1):
+            log(f"{i}. {e['path']} :: {' '.join(e['cmd'])}")
+        log("[i] Dry run end."); return
 
     sysname = platform.system().lower()
+    launched = 0
     if sysname.startswith("win"):
-        launched = launch_windows(entries)
+        # Windows: spawn cmd windows
+        for e in slice_entries:
+            wd = str(e["path"].parent); title = e["path"].name
+            joined = " ".join(shlex.quote(x) for x in e["cmd"])
+            os.system(f'start "{title}" cmd /k "cd /d {wd} && {joined}"')
+            launched += 1
+            if args.stagger > 0: time.sleep(args.stagger)
     else:
-        launched = launch_linux_mac(entries, session_name=args.session)
+        if tmux_exists():
+            tmux_ensure(args.session)
+            for e in slice_entries:
+                title = e["path"].name
+                cmd = " ".join(shlex.quote(x) for x in e["cmd"])
+                spawn_tmux_window(args.session, title, str(e["path"].parent), cmd)
+                launched += 1
+                if args.stagger > 0: time.sleep(args.stagger)
+            log(f"[+] tmux session '{args.session}' now has +{launched} window(s). Attach with: tmux attach -t {args.session}")
+        else:
+            for e in slice_entries:
+                spawn_terminal(str(e["path"].parent), e["cmd"])
+                launched += 1
+                if args.stagger > 0: time.sleep(args.stagger)
 
-    console.print(f"[+] Launched {len(launched)} program(s) in separate windows.")
-    console.print("[i]Close windows when done, or kill the tmux session to stop all.")
+    log(f"[+] Launched {launched} program(s) in wave {wave}/{waves}.")
+    if wave < waves:
+        log(f"[→] To launch the next wave: re-run with --wave {wave+1} (or use --smart-batch to auto-size).")
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        pass
+        log("[i] Interrupted")

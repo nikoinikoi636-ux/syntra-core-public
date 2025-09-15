@@ -1,0 +1,122 @@
+{
+  "generated_at": "2025-08-31T02:49:55.595477Z",
+  "packs": [
+    {
+      "zip_name": "HeartCore_Unlock_Package.zip",
+      "zip_size_bytes": 18172,
+      "zip_checksum_sha256": "e0f431c6a082f507ce22598d9e25248c3c37506a7235206403fed6c2569a3e07",
+      "files_count": 5,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "md",
+        "py",
+        "txt"
+      ]
+    },
+    {
+      "zip_name": "HeartCore_Integrated_StartPack.zip",
+      "zip_size_bytes": 16292,
+      "zip_checksum_sha256": "664cb2058510cade4783a03e84cabcbddadc59dd892fa8401bf0effbd4ca3fe1",
+      "files_count": 7,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "docx",
+        "md",
+        "py"
+      ]
+    },
+    {
+      "zip_name": "HeartRoom_Protection_Pack.zip",
+      "zip_size_bytes": 15479,
+      "zip_checksum_sha256": "9a9577b82903ee25ca50b3242be6f3abc207898bf8f646604e243548199b5b6a",
+      "files_count": 3,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "docx",
+        "md",
+        "txt"
+      ]
+    },
+    {
+      "zip_name": "heart_system_v2_3.zip",
+      "zip_size_bytes": 8781,
+      "zip_checksum_sha256": "a431a88ffb91408bba9e7d949e25d859ea8f518fdf703a34c29a12a415b244bf",
+      "files_count": 3,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "md",
+        "py"
+      ]
+    },
+    {
+      "zip_name": "logic_modules.zip",
+      "zip_size_bytes": 1002,
+      "zip_checksum_sha256": "c61279ce932877dd806c715d5ea23bebf4eaa8eaeb2ed65b8389ec97f6f1bcaf",
+      "files_count": 3,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "py"
+      ]
+    },
+    {
+      "zip_name": "HeartCore_MindCopy_App.zip",
+      "zip_size_bytes": 15821,
+      "zip_checksum_sha256": "0427d187f4e3b73ea80f6cef96bc1f8f786ddcdbb6a54870dc2fb062ac211428",
+      "files_count": 12,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "css",
+        "html",
+        "js",
+        "json",
+        "md",
+        "png"
+      ]
+    },
+    {
+      "zip_name": "HeartRoom_Total_Packet (1).zip",
+      "zip_size_bytes": 5468,
+      "zip_checksum_sha256": "d898a38c4bb336652ad128cb019591c4dd09a6ae1ad18936d299c513b08de1d3",
+      "files_count": 3,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "md",
+        "txt"
+      ]
+    },
+    {
+      "zip_name": "HeartRoom_Core_Starter.zip",
+      "zip_size_bytes": 2290,
+      "zip_checksum_sha256": "44f4f949f578651aeff728d608055d3c7bc24341d799152249f2a6b814e06c03",
+      "files_count": 8,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "md"
+      ]
+    },
+    {
+      "zip_name": "Internet_Transparency_Kit_BG_v1.zip",
+      "zip_size_bytes": 6961,
+      "zip_checksum_sha256": "7f7f32ab23bcfb78dae2ef9a44394021c68db068b3e0901e0d526a29bee7e5a4",
+      "files_count": 12,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "md",
+        "txt"
+      ]
+    },
+    {
+      "zip_name": "Operational_Framework_v2_20250825_182201.zip",
+      "zip_size_bytes": 6840,
+      "zip_checksum_sha256": "ca853422d3ffa0206b4cefc3793b25eed474fb627f2e06861158fd2bebbb4db5",
+      "files_count": 6,
+      "probable_entrypoints": [],
+      "languages_detected": [
+        "csv",
+        "json",
+        "md",
+        "txt"
+      ]
+    }
+  ]
+}

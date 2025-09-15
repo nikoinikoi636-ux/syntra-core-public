@@ -1,0 +1,69 @@
+{
+  "generated_utc": "2025-08-31T17:09:52.894187Z",
+  "files": [
+    {
+      "file": "README.md",
+      "size_bytes": 1844,
+      "sha256": "ce6f9a871dc5831b7ce5026849bd4c9f1856472dd880e7d6a3cbdd611beee14b",
+      "executable": false,
+      "syntax_ok": "",
+      "stderr": ""
+    },
+    {
+      "file": "create_refuge_patch.txt",
+      "size_bytes": 1380,
+      "sha256": "e76b9cea4d88a38c787f22f5fdbd99aef238414fdf015135a11760e7ffee8746",
+      "executable": false,
+      "syntax_ok": "",
+      "stderr": ""
+    },
+    {
+      "file": "heart_rules_balanced.json",
+      "size_bytes": 783,
+      "sha256": "8b97190e5dbf191db4465eccbb5963bd1bd20cf54710b6094b3e19c4707f2172",
+      "executable": false,
+      "syntax_ok": "",
+      "stderr": ""
+    },
+    {
+      "file": "integrity_checker.sh",
+      "size_bytes": 1144,
+      "sha256": "3ec920a5a524d619c1bb7206e3082b7024efa8cd87753441a0423cf9f88afd48",
+      "executable": true,
+      "syntax_ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "network_quarantine.sh",
+      "size_bytes": 2873,
+      "sha256": "9ecf0f65c21a795b724c42a23caf5b195bcd50cbbffe98bac34b62ef9e3e0ab1",
+      "executable": true,
+      "syntax_ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "sintra_core.sh",
+      "size_bytes": 3279,
+      "sha256": "f642e6d49f5adca97e8a241f6e44e3e0d8487105eef52569e5be2d4c4dc8b6e0",
+      "executable": true,
+      "syntax_ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "sintra_thinker.sh",
+      "size_bytes": 4286,
+      "sha256": "a018738ff0f15111fd008b68f5c23fcfd4e6784c4e7ebd875f438ff012de3e07",
+      "executable": true,
+      "syntax_ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "unsealer.sh",
+      "size_bytes": 5680,
+      "sha256": "f2a715b3353c280a0d2015c919d2acda0db58cbb3ff06614242d524604f8bbb0",
+      "executable": true,
+      "syntax_ok": true,
+      "stderr": ""
+    }
+  ]
+}

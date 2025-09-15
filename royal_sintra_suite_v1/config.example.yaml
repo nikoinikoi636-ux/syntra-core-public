@@ -1,0 +1,4 @@
+# royal_sintra config example
+default_max_size_mb: 5
+rules_file: "royal_sintra/heart_rules/indicators.yml"
+policy_profile: "royal_sintra/heart_rules/heart_rules_balanced.json"

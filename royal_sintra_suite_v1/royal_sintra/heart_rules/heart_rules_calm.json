@@ -1,0 +1,17 @@
+{
+  "deny_patterns": [
+    "os.system\\(",
+    "subprocess\\.(Popen|run)\\(",
+    "eval\\("
+  ],
+  "allow_patterns": [
+    "# ALLOWED_TEST_SNIPPET",
+    "DEBUG_ALLOW"
+  ],
+  "hard_quarantine": [
+    {
+      "pattern": "-----BEGIN [A-Z ]*PRIVATE KEY-----"
+    }
+  ],
+  "notes": "Calm profile — минимални блокажи + ключове"
+}

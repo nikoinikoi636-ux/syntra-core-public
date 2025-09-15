@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="manifest" href="manifest.json"/><link rel="icon" href="icons/icon-192.png"/>
+<meta name="theme-color" content="#28a745"/><title>HeartCore MindCopy</title>
+<link rel="stylesheet" href="styles.css"/>
+</head><body>
+<header><nav><div class="brand"><span class="dot"></span> HeartCore MindCopy</div>
+<div class="small">Install from browser menu → <span class="kbd">Add to Home Screen</span></div></nav></header>
+<main>
+  <section class="card">
+    <h1>Dashboard</h1>
+    <div class="small">Generated: 2025-08-19 05:23 UTC</div>
+    <div id="modes" style="margin:.5rem 0"></div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Modes</h3>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="ghost" onclick="toggle('elinor',0)">Елинор 0</button>
+          <button class="ghost" onclick="toggle('elinor',1)">1</button>
+          <button class="ghost" onclick="toggle('elinor',2)">2</button>
+          <button class="ghost" onclick="toggle('elinor',3)">3</button>
+          <button onclick="toggle('dinya')">диня</button>
+          <button onclick="toggle('kurva')">курва</button>
+          <button onclick="toggle('banitsa')">баница</button>
+          <button onclick="toggle('godmode')">godmode</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Quick Links</h3>
+        <button class="ghost" onclick="setTab('tab_hc')">Heart Core</button>
+        <button class="ghost" onclick="setTab('tab_fl')">Free Layer</button>
+        <button class="ghost" onclick="setTab('tab_ritual')">Ritual</button>
+        <button class="ghost" onclick="setTab('tab_logs')">Logs</button>
+        <button class="ghost" onclick="setTab('tab_settings')">Backup</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab_hc" data-tab class="card" style="display:none">
+    <h2>HEART CORE v3.1</h2>
+    <pre id="doc_hc">Loading…</pre>
+  </section>
+
+  <section id="tab_fl" data-tab class="card" style="display:none">
+    <h2>Free Layer v1</h2>
+    <pre id="doc_fl">Loading…</pre>
+  </section>
+
+  <section id="tab_ritual" data-tab class="card" style="display:none">
+    <h2>Seven‑Day Cahetel Ritual</h2>
+    <pre id="doc_ritual">Loading…</pre>
+  </section>
+
+  <section id="tab_logs" data-tab class="card" style="display:none">
+    <h2>Daily Log — Synthesis 3×3</h2>
+    <form id="logForm" onsubmit="event.preventDefault();addLog();">
+      <div class="grid">
+        <input id="lg_intent" placeholder="Intent / Question"/>
+        <input id="lg_spark" placeholder="Spark / Reflection"/>
+        <input id="lg_fact" placeholder="Fact"/>
+        <input id="lg_step" placeholder="Step"/>
+        <input id="lg_guard" placeholder="Guard"/>
+      </div>
+      <div style="margin-top:.6rem;display:flex;gap:.5rem">
+        <button type="submit">Add Entry</button>
+      </div>
+    </form>
+    <div id="logs" style="margin-top:1rem"></div>
+  </section>
+
+  <section id="tab_settings" data-tab class="card" style="display:none">
+    <h2>Mindprint & Backup</h2>
+    <div class="grid">
+      <input id="mp_name" placeholder="Mind name"/>
+      <input id="mp_mission" placeholder="Mission"/>
+      <input id="mp_voice" placeholder="Voice"/>
+    </div>
+    <div style="margin-top:.6rem;display:flex;gap:.5rem">
+      <button onclick="saveMindprint()">Save Mindprint</button>
+      <button class="ghost" onclick="exportState()">Export State</button>
+      <label class="ghost" style="padding:.6rem 1rem;border-radius:12px;border:1px solid #202833;cursor:pointer">
+        Import State <input type="file" accept="application/json" onchange="importState(event)" style="display:none"/>
+      </label>
+    </div>
+  </section>
+
+  <footer>HeartCore MindCopy — ◯🔥 — 2025-08-19</footer>
+</main>
+<script src="script.js"></script>
+</body></html>

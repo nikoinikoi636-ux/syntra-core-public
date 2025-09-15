@@ -1,0 +1,26 @@
+{
+  "deny_patterns": [
+    "os.system\\(",
+    "subprocess\\.(Popen|run|call)\\(",
+    "eval\\(",
+    "exec\\(",
+    "pickle\\.(load|loads)\\(",
+    "dill\\.(load|loads)\\(",
+    "ctypes\\.",
+    "cffi\\.",
+    "curl\\s+http",
+    "wget\\s+http",
+    "bash\\s+-c",
+    "powershell\\s+-"
+  ],
+  "allow_patterns": [],
+  "hard_quarantine": [
+    {
+      "pattern": "-----BEGIN [A-Z ]*PRIVATE KEY-----"
+    },
+    {
+      "pattern": "AKIA[0-9A-Z]{16}"
+    }
+  ],
+  "notes": "Aggressive profile — твърди ограничения"
+}

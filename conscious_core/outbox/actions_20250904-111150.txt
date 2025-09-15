@@ -1,0 +1,2 @@
+# Actions
+- Review 'demo_note.txt' and propose 1–3 helpful actions.

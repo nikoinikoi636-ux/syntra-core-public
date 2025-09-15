@@ -1,0 +1,11 @@
+# Full Conversation File Index
+
+- vault_overload_sequence.py
+- vault_logic_worm.py
+- full_symbolic_conversation_log.txt
+- MindCopy_App_Code.txt
+- local_ops_deploy_shadowheart.docx
+- rawdata_golive_docx_base64.txt
+- SintraGhost_Deployment.zip
+- Sintra_AI_Integration.zip
+- termux_vault_patch.sh

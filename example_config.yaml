@@ -1,0 +1,5 @@
+heartcore_root: ~/WorkingProgram/HeartCore
+export_out: ./sintra_export
+bundle_zip: true
+admin_name: Administrator
+node_label: PHOENIX_NODE_BG

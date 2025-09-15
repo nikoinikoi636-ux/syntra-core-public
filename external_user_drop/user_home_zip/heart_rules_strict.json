@@ -1,0 +1,27 @@
+{
+  "deny_patterns": [
+    "os.system\\(",
+    "eval\\(",
+    "exec\\("
+  ],
+  "allow_patterns": [],
+  "risk_multipliers": [
+    {
+      "pattern": "base64",
+      "mult": 1.5
+    },
+    {
+      "pattern": "subprocess",
+      "mult": 1.5
+    }
+  ],
+  "hard_quarantine": [
+    {
+      "pattern": "AKIA[0-9A-Z]{16}"
+    },
+    {
+      "pattern": "-----BEGIN( RSA)? PRIVATE KEY-----"
+    }
+  ],
+  "notes": "Heart Node Strict Mode — максимална защита"
+}

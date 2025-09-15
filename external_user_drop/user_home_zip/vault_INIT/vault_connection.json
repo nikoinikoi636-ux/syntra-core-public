@@ -1,0 +1,9 @@
+{
+  "agent_id": "v30",
+  "synced": true,
+  "linked_to": ["Sintra.ai"],
+  "auth": {
+    "use_google": true,
+    "session_token": "REPLACE_WITH_REAL_TOKEN"
+  }
+}

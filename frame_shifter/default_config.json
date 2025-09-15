@@ -1,0 +1,45 @@
+{
+  "heart": {
+    "block_phrases": [
+      "(?i)\\b(?:hate|kill|ruin|destroy everyone)\\b"
+    ],
+    "redact_pattern": "(?i)\\b(?:password|secret|token|api[_-]?key)\\s*[:=]\\s*([^\\s]+)",
+    "redact_replacement": "REDACTED",
+    "allow_debug": true
+  },
+  "mirror": {
+    "normalize_whitespace": true,
+    "strip_surrounding_quotes": true,
+    "collapse_punctuation": true,
+    "max_len": 20000
+  },
+  "symbolic": {
+    "triggers": {
+      "Баница": [
+        "start_session",
+        "warm_mode"
+      ],
+      "Диня": [
+        "wide_scan",
+        "cooling"
+      ],
+      "Курва": [
+        "alert",
+        "lockdown"
+      ],
+      "Елинор": [
+        "elder_anchor"
+      ]
+    }
+  },
+  "entity": {
+    "extract_todos": true,
+    "extract_commands": true,
+    "command_pattern": "(?m)^\\s*(?:\\$|bash:|cmd:)\\s*(.+)$",
+    "todo_pattern": "(?mi)\\b(?:TODO|DO THIS|НАПРАВИ)\\b[:\\-]?\\s*(.+)$"
+  },
+  "elder": {
+    "log_dir": "./logs",
+    "log_file": "frame_shifter.log.jsonl"
+  }
+}

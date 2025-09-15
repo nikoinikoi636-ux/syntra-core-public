@@ -1,0 +1,26 @@
+=== Compatibility & Integrity Test Report ===
+Timestamp: 20250825_182201
+
+[Backups created]
+- /mnt/data/backups_20250825_182201/adaptive_warriors_patched_v3.json
+- /mnt/data/backups_20250825_182201/termux_bundle_for_TotalCommander.zip
+- /mnt/data/backups_20250825_182201/HeartCore_Unlock_Package.zip
+- /mnt/data/backups_20250825_182201/HeartCore_MindCopy_App.zip
+- /mnt/data/backups_20250825_182201/entity_agent_v2_1.zip
+- /mnt/data/backups_20250825_182201/Deductive_Mode_Kit.zip
+- /mnt/data/backups_20250825_182201/HeartCore_Integrated_StartPack.zip
+- /mnt/data/backups_20250825_182201/Heart_Master_Pack_2025-08-10_to_2025-08-15.zip
+
+[JSON Validation]
+- adaptive_warriors_patched_v3.json: FAIL — 2 issues
+- loop_reflector_warrior: missing 'autonomous_recovery'
+- loop_reflector_warrior: unexpected autonomous_recovery.trigger_on=None
+
+[ZIP Integrity]
+- termux_bundle_for_TotalCommander.zip: PASS integrity
+- HeartCore_Unlock_Package.zip: PASS integrity
+- HeartCore_MindCopy_App.zip: PASS integrity
+- entity_agent_v2_1.zip: PASS integrity
+- Deductive_Mode_Kit.zip: PASS integrity
+- HeartCore_Integrated_StartPack.zip: PASS integrity
+- Heart_Master_Pack_2025-08-10_to_2025-08-15.zip: PASS integrity

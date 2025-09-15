@@ -1,0 +1,4 @@
+"  Баница!!!   TODO: Пусни агента   
+
+$ docker compose up -d  "
+password=abc123

@@ -1,0 +1,1 @@
+def run(args, ctx): return 'eu_funds_tracker active'
