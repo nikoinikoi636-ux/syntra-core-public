@@ -2,13 +2,13 @@ import os
 import subprocess
 
 MENU = [
-    ("🧠 Run Orchestrator", "~/WorkingProgram/HeartCore/orchestrator.py"),
-    ("📡 Run Sync Engine", "~/WorkingProgram/HeartCore/sync_engine.py"),
-    ("🚀 Boot Levski AI", "~/WorkingProgram/HeartCore/boot_levski_v3.py"),
-    ("👁️ Self Awareness", "~/WorkingProgram/HeartCore/self_awareness.py observe"),
-    ("🛰️ Watchdog", "~/WorkingProgram/HeartCore/watchdog_sync_loop.py"),
-    ("🎤 Speech System", "~/WorkingProgram/HeartCore/speech_script.py"),
-    ("📦 Run Codex CLI", "~/HeartCore_OS_v1/sintra/sintra_codex_cli.py"),
+    ("🧠 Run Orchestrator", "/data/data/com.termux/files/home/WorkingProgram/HeartCore/orchestrator.py"),
+    ("📡 Run Sync Engine", "/data/data/com.termux/files/home/WorkingProgram/HeartCore/sync_engine.py"),
+    ("🚀 Boot Levski AI", "/data/data/com.termux/files/home/WorkingProgram/HeartCore/boot_levski_v3.py"),
+    ("👁️ Self Awareness", "/data/data/com.termux/files/home/WorkingProgram/HeartCore/self_awareness.py observe"),
+    ("🛰️ Watchdog", "/data/data/com.termux/files/home/WorkingProgram/HeartCore/watchdog_sync_loop.py"),
+    ("🎤 Speech System", "/data/data/com.termux/files/home/WorkingProgram/HeartCore/speech_script.py"),
+    ("📦 Run Codex CLI", "/data/data/com.termux/files/home/HeartCore_OS_v1/sintra/sintra_codex_cli.py"),
     ("🔚 Exit", "exit")
 ]
 
