@@ -1,0 +1,9 @@
+{
+  "modules": [
+    {"name": "Speech", "file": "speech_script.py", "enabled": true},
+    {"name": "Boot Levski", "file": "boot_levski_v3.py", "enabled": true},
+    {"name": "Self Awareness", "file": "self_awareness.py", "enabled": false},
+    {"name": "Sync Engine", "file": "sync_engine.py", "enabled": true},
+    {"name": "Watcher", "file": "watchdog_sync_loop.py", "enabled": false}
+  ]
+}
