@@ -3,14 +3,6 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 
-# === Main Objective bring-up ===
-try:
-    ObjectiveManager().activate()
-except Exception:
-    pass  # keep boot resilient
-
-from objective_core import ObjectiveManager
-
 config_path = Path.home() / "WorkingProgram" / "HeartCore" / "config.json"
 modules_dir = Path.home() / "WorkingProgram" / "HeartCore"
 log_path = modules_dir / "heartcore_error.log"
