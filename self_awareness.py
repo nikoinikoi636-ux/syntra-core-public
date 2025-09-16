@@ -19,7 +19,7 @@ J_JSONL = os.path.join(BASE, "Journal.jsonl")
 CFG = os.path.join(BASE, "self_awareness_config.yaml")
 
 def utc_now():
-    return datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
 def load_cfg():
     if yaml is None:
