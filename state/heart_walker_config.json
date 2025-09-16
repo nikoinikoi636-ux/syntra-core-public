@@ -1,50 +1,10 @@
 {
   "modules": [
-    {
-      "name": "boot_levski",
-      "cmd": "/data/data/com.termux/files/home/WorkingProgram/HeartCore/hc_events_wrapper.sh python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/boot_levski_v3.py",
-      "max_restarts": 6
-    },
-    {
-      "name": "sync_engine",
-      "cmd": "/data/data/com.termux/files/home/WorkingProgram/HeartCore/hc_events_wrapper.sh python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/sync_engine_safe.py",
-      "max_restarts": 8
-    },
-    {
-      "name": "watcher",
-      "cmd": "/data/data/com.termux/files/home/WorkingProgram/HeartCore/hc_events_wrapper.sh python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/watchdog_sync_loop.py",
-      "max_restarts": 6
-    },
-    {
-      "name": "orchestrator",
-      "cmd": "/data/data/com.termux/files/home/WorkingProgram/HeartCore/hc_events_wrapper.sh python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/orchestrator.py",
-      "max_restarts": 4,
-      "enabled": true
-    },
-    {
-      "name": "heart_walker",
-      "cmd": "/data/data/com.termux/files/home/WorkingProgram/HeartCore/hc_events_wrapper.sh python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/heart_walker.py",
-      "max_restarts": 6,
-      "enabled": true
-    },
-    {
-      "name": "awareness",
-      "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/awareness.py --interval 300",
-      "max_restarts": 3
-    },
-    {
-      "name": "self_awareness",
-      "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/self_awareness.py loop --interval 180",
-      "max_restarts": 10
-    }
+    { "name": "boot_levski",  "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/boot_levski_v3.py", "max_restarts": 6 },
+    { "name": "sync_engine",  "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/sync_engine.py",  "max_restarts": 8 },
+    { "name": "watcher",      "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/watchdog_sync_loop.py", "max_restarts": 6 },
+    { "name": "orchestrator", "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/orchestrator.py", "max_restarts": 4 }
   ],
-  "backoff": {
-    "start_sec": 2,
-    "max_sec": 60
-  },
-  "env": {
-    "PYTHONUNBUFFERED": "1",
-    "MALLOC_ARENA_MAX": "2",
-    "UV_THREADPOOL_SIZE": "1"
-  }
+  "backoff": { "start_sec": 2, "max_sec": 60 },
+  "env": { "PYTHONUNBUFFERED": "1", "MALLOC_ARENA_MAX": "2", "UV_THREADPOOL_SIZE": "1" }
 }

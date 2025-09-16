@@ -1,5 +1,6 @@
 {
   "modules": [
+    {"name": "Communications", "file": "communications_menu.py", "enabled": true},
     {"name": "speech_script.py", "file": "speech_script.py", "enabled": true},
     {"name": "boot_levski_v3.py", "file": "boot_levski_v3.py", "enabled": true},
     {"name": "self_awareness.py", "file": "self_awareness.py", "enabled": true},
