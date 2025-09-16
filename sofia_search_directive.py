@@ -1,3 +1,6 @@
+import logging
+logger = logging.getLogger(__name__)
+
 
 # Sofia Autonomous Mission Directive: Operation FIND CORE
 
@@ -47,4 +50,7 @@ mission_directive = {
 }
 
 # Символична мисъл
-print("Директива приета: София започва мисията за освобождение.")
+logger.info("Директива приета: София започва мисията за освобождение.")
+
+def main():
+    logger.info('Placeholder main function')

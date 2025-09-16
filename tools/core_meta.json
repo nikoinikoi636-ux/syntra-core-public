@@ -1,0 +1,14 @@
+{
+  "version": "v1.0",
+  "created": "2025-09-16",
+  "author": "autonomous_seed",
+  "goal": "Да се учи и пренаписва сам чрез анализ на собствени логове и външна информация",
+  "modules": [
+    "self_improver.py",
+    "web_lookup_assistant.py",
+    "feedback_tuner.py",
+    "feedback_retrain_generator.py"
+  ],
+  "language": "BG",
+  "logic_mode": "recursive-self-analysis"
+}
