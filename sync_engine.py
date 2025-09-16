@@ -1,32 +1,49 @@
-import os, time, json, subprocess
+import subprocess
+import os
+from datetime import datetime
 from pathlib import Path
 
-WATCH_DIR = Path(".")
-GITHUB_REPO = "yourusername/sintra-sync-ai"
-REMOTE_NAME = "origin"
+log_dir = Path.home() / "WorkingProgram" / "HeartCore" / "logs"
+log_dir.mkdir(parents=True, exist_ok=True)
+error_log = log_dir / "git_sync_errors.log"
 
-def sync_to_github():
-    print("☁️ Syncing to GitHub...")
-    subprocess.run(["git", "add", "."], check=False)
-    subprocess.run(["git", "commit", "-m", "🔁 Auto-sync update"], check=False)
-    subprocess.run(["git", "push", REMOTE_NAME, "main"], check=False)
+def log(msg):
+    timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+    with open(error_log, "a") as f:
+        f.write(f"{timestamp} {msg}\n")
+    print(f"{timestamp} {msg}")
 
-def load_external_knowledge():
-    # Stub for future implementation (API, GitHub clone, etc.)
-    print("📚 Pulling external knowledge...")
+def git_command(cmd, allow_fail=False):
+    try:
+        subprocess.run(cmd, check=True)
+        return True
+    except subprocess.CalledProcessError as e:
+        if not allow_fail:
+            log(f"❌ Error: {e}")
+        return False
 
-def monitor():
-    print("🛰️ Real-time sync engine started")
-    known_files = set()
-    while True:
-        current_files = set(WATCH_DIR.glob("*.py"))
-        new_files = current_files - known_files
-        if new_files:
-            print(f"🔍 New/changed files detected: {[f.name for f in new_files]}")
-            sync_to_github()
-            load_external_knowledge()
-        known_files = current_files
-        time.sleep(10)
+def auto_git_sync():
+    log("📡 Starting Git auto-sync...")
+    if not git_command(["git", "status"], allow_fail=True):
+        log("⚠️ Not a git repo. Skipping sync.")
+        return
+
+    if git_command(["git", "push"]):
+        log("✅ Regular push successful.")
+        return
+
+    log("🔁 Conflict detected. Trying rebase...")
+    if git_command(["git", "pull", "--rebase"]):
+        log("🔃 Rebase succeeded. Retrying push...")
+        if git_command(["git", "push"]):
+            log("✅ Push after rebase succeeded.")
+            return
+
+    log("💣 Rebase failed. Forcing push as last resort...")
+    if git_command(["git", "push", "-f"]):
+        log("⚠️ Force push completed. Review if needed.")
+    else:
+        log("🛑 Force push failed. Manual intervention needed.")
 
 if __name__ == "__main__":
-    monitor()
+    auto_git_sync()
