@@ -31,6 +31,11 @@
       "name": "awareness",
       "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/awareness.py --interval 300",
       "max_restarts": 3
+    },
+    {
+      "name": "self_awareness",
+      "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/self_awareness.py loop --interval 180",
+      "max_restarts": 10
     }
   ],
   "backoff": {

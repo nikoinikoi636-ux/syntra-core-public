@@ -1,143 +1,237 @@
-
 #!/usr/bin/env python3
-# A minimal self-awareness logger aligned with Heart Room.
-# Usage examples:
-#   python self_awareness.py observe "fact1" "fact2" "fact3" --intent "draft ZDOI" --micro "write 3 bullets" --tags precious osint
-#   python self_awareness.py pause "reason for pause"
-#   python self_awareness.py show last
+# Self-Awareness Agent (engineering awareness, not sentience)
+import os, sys, json, time, hashlib, subprocess, socket, platform
+from pathlib import Path
+ROOT   = Path(__file__).resolve().parent
+STATE  = ROOT / "state"; STATE.mkdir(parents=True, exist_ok=True)
+LOGS   = ROOT / "logs" / "modules"; LOGS.mkdir(parents=True, exist_ok=True)
+SFILE  = STATE / "self_state.json"
+TFILE  = STATE / "self_state.txt"
+LOG    = LOGS  / "self_awareness.log"
 
-import sys, json, os, datetime, argparse
+KEY_FILES = [
+  "orchestrator.py", "sync_engine.py", "boot_levski_v3.py",
+  "watchdog_sync_loop.py", "objective_core.py"
+]
 
-try:
-    import yaml  # type: ignore
-except Exception:
-    yaml = None
+def log(msg):
+    msg = msg.rstrip()
+    print(msg, flush=True)
+    LOG.open("a", encoding="utf-8").write(msg + "\n")
 
-BASE = os.path.dirname(os.path.abspath(__file__))
-J_MD = os.path.join(BASE, "Journal.md")
-J_JSONL = os.path.join(BASE, "Journal.jsonl")
-CFG = os.path.join(BASE, "self_awareness_config.yaml")
-
-def utc_now():
-    return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-
-def load_cfg():
-    if yaml is None:
-        return {}
+def sh(cmd, timeout=5):
     try:
-        with open(CFG, "r", encoding="utf-8") as f:
-            return yaml.safe_load(f) or {}
-    except FileNotFoundError:
-        return {}
+        out = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, timeout=timeout)
+        return out.decode("utf-8","ignore").strip(), 0
+    except subprocess.CalledProcessError as e:
+        return e.output.decode("utf-8","ignore"), e.returncode
+    except Exception as e:
+        return f"(err:{e})", 1
 
-def append_md(md_line):
-    with open(J_MD, "a", encoding="utf-8") as f:
-        f.write(md_line + "\n")
-
-def append_jsonl(obj):
-    with open(J_JSONL, "a", encoding="utf-8") as f:
-        f.write(json.dumps(obj, ensure_ascii=False) + "\n")
-
-def alignment_check(intent, cfg):
-    notes = []
-    ok = True
-    if not intent or len(intent.strip()) == 0:
-        notes.append("Empty intent")
-        ok = False
-    # Further checks could map keywords to the ethical compass
-    return {
-        "principles_ok": True,
-        "oath_ok": True,
-        "logical_conflict": not ok,
-        "notes": "; ".join(notes) if notes else "OK"
-    }
-
-def cmd_observe(args):
-    cfg = load_cfg()
-    entry = {
-        "timestamp_utc": utc_now(),
-        "observations": args.facts,
-        "intent": args.intent or "",
-        "constraints": args.constraints or [],
-        "alignment_check": alignment_check(args.intent, cfg),
-        "micro_action": args.micro or "",
-        "outcome": "",
-        "next_signal": "",
-        "tags": args.tags or []
-    }
-    append_jsonl(entry)
-    append_md(f"## {entry['timestamp_utc']} — OBSERVE\n- facts: {entry['observations']}\n- intent: {entry['intent']}\n- micro: {entry['micro_action']}\n- tags: {entry['tags']}")
-    print("Logged observation entry.")
-    if entry["alignment_check"]["logical_conflict"]:
-        append_md("**Status:** PAUSE (logical conflict)\n")
-        print("Logical conflict detected — consider pause/validation.")
-
-def cmd_update(args):
+def file_sha256(p: Path):
     try:
-        with open(J_JSONL, "r", encoding="utf-8") as f:
-            lines = f.readlines()
-        if not lines:
-            print("No entries to update."); return
-        import json
-        last = json.loads(lines[-1])
-        if args.outcome:
-            last["outcome"] = args.outcome
-        if args.next:
-            last["next_signal"] = args.next
-        lines[-1] = json.dumps(last, ensure_ascii=False) + "\\n"
-        with open(J_JSONL, "w", encoding="utf-8") as f:
-            f.writelines(lines)
-        append_md(f"**Outcome:** {args.outcome or ''}\\n**Next:** {args.next or ''}\\n")
-        print("Updated last entry.")
-    except FileNotFoundError:
-        print("Journal not found.")
+        h=hashlib.sha256()
+        with p.open("rb") as f:
+            for chunk in iter(lambda: f.read(65536), b""):
+                h.update(chunk)
+        return h.hexdigest()
+    except Exception:
+        return None
 
-def cmd_pause(args):
-    append_md(f"## {utc_now()} — PAUSE\\nReason: {args.reason}\\n")
-    append_jsonl({"timestamp_utc": utc_now(), "event": "pause", "reason": args.reason})
-    print("Pause noted.")
+def running(pattern: str) -> bool:
+    out,_ = sh("ps -ef | grep -v grep | grep -E '%s'" % pattern.replace("'","."))
+    return bool(out.strip())
 
-def cmd_show(args):
-    if args.which == "last":
+def count_timeouts(log_path: Path, n_lines=400):
+    if not log_path.exists(): return 0
+    try:
+        tail = subprocess.check_output(f"tail -n {n_lines} '{log_path}'", shell=True).decode("utf-8","ignore")
+    except Exception:
+        tail = log_path.read_text(encoding="utf-8", errors="ignore")[-8000:]
+    c = 0
+    for line in tail.splitlines():
+        if "Timeout:" in line or "Error" in line or "Traceback" in line:
+            c += 1
+    return c
+
+def codex_cycles():
+    codex = Path.home()/ "HeartCore_OS_v1" / "logs" / "paradox_codex.md"
+    if not codex.exists(): return 0
+    try:
+        return sum(1 for ln in codex.open(encoding="utf-8") if ln.startswith("### Cycle "))
+    except Exception:
+        return 0
+
+def load_objective():
+    # read objective_core purpose if present
+    obj = ROOT / "objective_core.py"
+    if not obj.exists(): return None
+    # best-effort import via subprocess (avoid import side-effects)
+    out,_ = sh(f"python3 '{obj}' echo-purpose", timeout=4)
+    if out.startswith("{"):
         try:
-            with open(J_MD, "r", encoding="utf-8") as f:
-                lines = [l for l in f.read().splitlines() if l.strip()]
-            print("\\n".join(lines[-10:]))
-        except FileNotFoundError:
-            print("No journal yet.")
-    else:
-        print("Use: show last")
+            j = json.loads(out)
+            return j.get("purpose") or j
+        except Exception:
+            pass
+    # fallback: try config.json purpose
+    cfg = ROOT / "config.json"
+    if cfg.exists():
+        try:
+            j = json.loads(cfg.read_text())
+            return j.get("purpose")
+        except Exception:
+            pass
+    return None
+
+def snapshot():
+    purpose = load_objective()
+    # platform
+    plat = dict(system=platform.system(), release=platform.release(),
+                py=platform.python_version(), machine=platform.machine(),
+                hostname=socket.gethostname())
+    # resources (best-effort)
+    mem,_  = sh("grep MemAvailable /proc/meminfo | awk '{print $2}'")
+    disk,_ = sh("df -h . | tail -n1")
+    net,_  = sh("ip addr | grep 'inet ' | awk '{print $2}' | paste -sd, -")
+
+    # processes
+    procs,_ = sh("ps -ef | grep -v grep | grep python3")
+    proc_lines = [l for l in procs.splitlines() if l.strip()]
+
+    # integrity: key file hashes
+    hashes = {}
+    for name in KEY_FILES:
+        p = ROOT / name
+        hashes[name] = file_sha256(p) if p.exists() else None
+
+    # git status
+    git = {}
+    if (ROOT/".git").exists():
+        remote,_  = sh(f"git -C '{ROOT}' remote -v | head -n1")
+        branch,_  = sh(f"git -C '{ROOT}' rev-parse --abbrev-ref HEAD")
+        dirty,_   = sh(f"git -C '{ROOT}' status --porcelain | wc -l")
+        git = {"remote":remote, "branch":branch, "dirty":int(dirty or 0)}
+    # signals from logs
+    orch_log = ROOT / "orchestrator.log"
+    timeouts = count_timeouts(orch_log)
+
+    # codex health
+    cycles = codex_cycles()
+
+    # scoring (0..100)
+    score = 100
+    if not running("orchestrator.py"): score -= 10
+    if not running("sync_engine.py"):  score -= 15
+    if not running("boot_levski_v3.py"): score -= 10
+    if timeouts > 3: score -= min(30, timeouts*2)
+    if git.get("dirty",0) > 0: score -= 5
+    if cycles < 1000: score -= 10
+    if len(proc_lines) == 0: score -= 10
+    state = "OK"
+    if score < 85: state = "WARN"
+    if score < 70: state = "ALERT"
+
+    data = {
+        "ts": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "purpose": purpose,
+        "platform": plat,
+        "resources": {"mem_kB": mem, "disk": disk, "net": net},
+        "processes": proc_lines,
+        "integrity": {"hashes": hashes},
+        "git": git,
+        "orchestrator_timeouts": timeouts,
+        "codex_cycles": cycles,
+        "score": score,
+        "state": state
+    }
+    SFILE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    TFILE.write_text(
+        "\n".join([
+            f"[{data['ts']}] Self-Awareness",
+            f"Purpose: {purpose or '(none)'}",
+            f"State: {state}  Score: {score}",
+            f"Procs: {len(proc_lines)}  Timeouts(last): {timeouts}",
+            f"Codex cycles: {cycles}  Git dirty: {git.get('dirty','-')}",
+            f"MemAvail(kB): {mem}  Disk: {disk}",
+        ]), encoding="utf-8"
+    )
+    log(f"[self] snapshot → {SFILE.name} ({state} {score})")
+    return data
+
+def explain(data):
+    reasons = []
+    s = data["score"]
+    if s < 100:
+        if not any("orchestrator.py" in p for p in data["processes"]):
+            reasons.append("orchestrator not running")
+        if not any("sync_engine.py" in p for p in data["processes"]):
+            reasons.append("sync_engine not running")
+        if data["orchestrator_timeouts"] > 3:
+            reasons.append(f"timeouts={data['orchestrator_timeouts']}")
+        if data["git"].get("dirty",0) > 0:
+            reasons.append("git dirty working tree")
+        if data["codex_cycles"] < 1000:
+            reasons.append("codex incomplete")
+        if len(data["processes"]) == 0:
+            reasons.append("no python3 processes")
+    return reasons or ["optimal"]
+
+def action_autoheal(data):
+    # Gentle self-heal for frequent issues
+    fixes = []
+    def start(path):
+        if not Path(path).exists(): return False
+        subprocess.Popen(["nohup","python3",path], cwd=str(ROOT),
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    # start orchestrator if missing
+    if not any("orchestrator.py" in p for p in data["processes"]):
+        if start(str(ROOT/"orchestrator.py")):
+            fixes.append("started orchestrator")
+    # ensure sync engine (non-fatal if not present)
+    if not any("sync_engine.py" in p for p in data["processes"]):
+        if (ROOT/"sync_engine.py").exists():
+            if start(str(ROOT/"sync_engine.py")):
+                fixes.append("started sync_engine")
+    if fixes:
+        log("[self] autoheal: " + ", ".join(fixes))
+    return fixes
 
 def main():
-    p = argparse.ArgumentParser()
-    sub = p.add_subparsers()
-
-    p_obs = sub.add_parser("observe", help="log observations + intent + micro-action")
-    p_obs.add_argument("facts", nargs="+", help="3 neutral facts (or more)")
-    p_obs.add_argument("--intent", default="", help="intended next step")
-    p_obs.add_argument("--micro", default="", help="10-min action")
-    p_obs.add_argument("--constraints", nargs="*", default=[], help="constraints list")
-    p_obs.add_argument("--tags", nargs="*", default=[], help="tags")
-    p_obs.set_defaults(func=cmd_observe)
-
-    p_upd = sub.add_parser("update", help="update outcome/next on last entry")
-    p_upd.add_argument("--outcome", default="", help="result sentence")
-    p_upd.add_argument("--next", default="", help="what to watch or do next")
-    p_upd.set_defaults(func=cmd_update)
-
-    p_pause = sub.add_parser("pause", help="note a pause")
-    p_pause.add_argument("reason", help="reason for pause")
-    p_pause.set_defaults(func=cmd_pause)
-
-    p_show = sub.add_parser("show", help="show last lines")
-    p_show.add_argument("which", choices=["last"])
-    p_show.set_defaults(func=cmd_show)
-
-    args = p.parse_args()
-    if hasattr(args, "func"):
-        args.func(args)
-    else:
-        p.print_help()
-
+    cmd = (sys.argv[1] if len(sys.argv)>1 else "loop").lower()
+    if cmd == "once":
+        data = snapshot()
+        print(json.dumps({"state":data["state"],"score":data["score"],"reasons":explain(data)}, indent=2))
+        return
+    if cmd == "status":
+        if not SFILE.exists():
+            print("(no self_state yet)"); return
+        print(TFILE.read_text())
+        return
+    if cmd == "explain":
+        if not SFILE.exists():
+            print("(no self_state yet)"); return
+        data = json.loads(SFILE.read_text())
+        print(json.dumps({"reasons":explain(data)}, indent=2))
+        return
+    if cmd == "panic":
+        data = snapshot()
+        print(json.dumps({"panic":True,"state":data["state"],"score":data["score"],"reasons":explain(data)}, indent=2))
+        return
+    if cmd == "loop":
+        interval = 180
+        try:
+            if "--interval" in sys.argv:
+                interval = int(sys.argv[sys.argv.index("--interval")+1])
+        except Exception: pass
+        log(f"[self] loop start interval={interval}s")
+        while True:
+            data = snapshot()
+            if data["state"] != "OK":
+                action_autoheal(data)
+            time.sleep(interval)
+        return
+    print("usage: python3 self_awareness.py [once|loop|status|explain|panic] [--interval N]")
 if __name__ == "__main__":
     main()

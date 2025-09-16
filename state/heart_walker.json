@@ -1,45 +1,45 @@
 {
-  "beat": 2,
-  "ts": "2025-09-16 03:24:34",
+  "beat": 1,
+  "ts": "2025-09-16 03:24:38",
   "runners": [
     {
       "name": "boot_levski",
-      "pid": 6426,
+      "pid": 7502,
       "last_rc": null,
       "restarts": 0,
       "backoff": 2
     },
     {
       "name": "sync_engine",
-      "pid": 6427,
+      "pid": 7504,
       "last_rc": null,
       "restarts": 0,
       "backoff": 2
     },
     {
       "name": "watcher",
-      "pid": 6878,
-      "last_rc": 0,
-      "restarts": 1,
-      "backoff": 4
+      "pid": 7511,
+      "last_rc": null,
+      "restarts": 0,
+      "backoff": 2
     },
     {
       "name": "orchestrator",
-      "pid": 6429,
+      "pid": 7518,
       "last_rc": null,
       "restarts": 0,
       "backoff": 2
     },
     {
       "name": "heart_walker",
-      "pid": 6431,
+      "pid": 7534,
       "last_rc": null,
       "restarts": 0,
       "backoff": 2
     },
     {
       "name": "awareness",
-      "pid": 6434,
+      "pid": 7537,
       "last_rc": null,
       "restarts": 0,
       "backoff": 2
