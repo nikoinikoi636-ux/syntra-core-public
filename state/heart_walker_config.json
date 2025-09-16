@@ -18,7 +18,14 @@
     {
       "name": "orchestrator",
       "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/orchestrator.py",
-      "max_restarts": 4
+      "max_restarts": 4,
+      "enabled": true
+    },
+    {
+      "name": "heart_walker",
+      "cmd": "python3 /data/data/com.termux/files/home/WorkingProgram/HeartCore/heart_walker.py",
+      "max_restarts": 6,
+      "enabled": true
     }
   ],
   "backoff": {

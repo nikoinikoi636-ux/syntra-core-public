@@ -1,34 +1,34 @@
 {
-  "beat": 3,
-  "ts": "2025-09-16 01:53:22",
+  "beat": 5,
+  "ts": "2025-09-16 03:07:20",
   "runners": [
     {
       "name": "boot_levski",
-      "pid": 14472,
-      "last_rc": null,
-      "restarts": 0,
-      "backoff": 2
+      "pid": 28036,
+      "last_rc": 0,
+      "restarts": 3,
+      "backoff": 16
     },
     {
       "name": "sync_engine",
-      "pid": 14473,
+      "pid": 27424,
       "last_rc": null,
       "restarts": 0,
       "backoff": 2
     },
     {
       "name": "watcher",
-      "pid": 14635,
-      "last_rc": 1,
-      "restarts": 2,
-      "backoff": 8
+      "pid": 28324,
+      "last_rc": 0,
+      "restarts": 4,
+      "backoff": 32
     },
     {
       "name": "orchestrator",
-      "pid": 14475,
-      "last_rc": null,
-      "restarts": 0,
-      "backoff": 2
+      "pid": 28488,
+      "last_rc": 0,
+      "restarts": 3,
+      "backoff": 16
     }
   ]
 }
