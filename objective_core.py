@@ -130,3 +130,16 @@ def main(argv=None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+# --- HeartCore Purpose Writer ---
+from pathlib import Path
+import json
+try:
+    PURPOSE_TEXT = PURPOSE if "PURPOSE" in globals() else purpose if "purpose" in locals() else "(none)"
+    state_dir = Path.home() / "WorkingProgram" / "HeartCore" / "state"
+    state_dir.mkdir(parents=True, exist_ok=True)
+    purpose_file = state_dir / "purpose.json"
+    purpose_file.write_text(json.dumps({"purpose": PURPOSE_TEXT}, indent=2), encoding="utf-8")
+except Exception as e:
+    print(f"[warn] could not write purpose.json: {e}")
+# --- End HeartCore Purpose Writer ---
